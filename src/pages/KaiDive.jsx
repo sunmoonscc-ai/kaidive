@@ -12,11 +12,11 @@ const KaiDive = () => {
             <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">
               Welcome to KAI DIVE
             </div>
-            <h1 className="font-display text-display-md md:text-display-lg text-deep-ocean font-bold leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-[3.2rem] text-deep-ocean font-bold leading-tight md:leading-tight lg:leading-snug tracking-tight">
               필리핀 세부 막탄에 위치한 <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">PSS 정식 인증 다이빙 센터</span>
             </h1>
-            <p className="text-on-surface-variant text-body-lg leading-relaxed max-w-2xl">
+            <p className="text-on-surface-variant text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
               카이다이브는 다이빙 전문 교육기관인 PSS 협회 정식 인증된 다이빙 교육센터로, 다양한 교육 다이빙, 펀다이빙, 체험다이빙을 전문적으로 진행하고 있습니다.
             </p>
           </div>
@@ -75,12 +75,21 @@ const KaiDive = () => {
               </p>
             </div>
 
-            {/* Card 3 (Image Placeholder) */}
-            <div className="bg-surface-container-low rounded-3xl border border-white/20 shadow-inner flex items-center justify-center min-h-[250px] relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-surface-mist to-transparent opacity-50"></div>
-              <div className="flex flex-col items-center text-on-surface-variant/50">
+            {/* Card 3 (Sub Image) */}
+            <div className="rounded-3xl shadow-[0_10px_30px_rgba(0,174,239,0.06)] border border-surface-container-low overflow-hidden relative min-h-[250px] hover:-translate-y-1 transition-transform duration-300">
+              <img 
+                src="/sub.jpg" 
+                alt="KAI DIVE Sub" 
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              {/* Fallback Placeholder (shown if image is not yet saved) */}
+              <div className="absolute inset-0 bg-surface-container-low flex flex-col items-center justify-center text-on-surface-variant/50 hidden">
                 <span className="material-symbols-outlined text-4xl mb-2">image</span>
-                <span className="font-medium text-sm">보조 이미지 자리</span>
+                <span className="font-medium text-sm">public/sub.jpg 로 저장해주세요</span>
               </div>
             </div>
           </div>
