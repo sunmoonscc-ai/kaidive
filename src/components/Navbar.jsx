@@ -88,9 +88,9 @@ const Navbar = ({ user, setUser }) => {
   };
   return (
     <>
-      {/* TopAppBar (Desktop) */}
+      {/* TopAppBar (Responsive) */}
       <header 
-        className={`fixed top-0 w-full z-50 transition-all duration-300 hidden md:flex justify-between items-center px-gutter h-20 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 flex justify-between items-center px-4 md:px-gutter h-16 md:h-20 ${
           isScrolled ? 'shadow-[0_10px_30px_rgba(0,174,239,0.08)] border-b border-white/10' : 'bg-transparent border-transparent'
         }`}
         style={{ background: isScrolled ? 'linear-gradient(to right, rgb(26, 57, 116) 0%, rgb(20, 38, 70) 250px, rgb(20, 38, 70) 100%)' : 'transparent' }}
@@ -100,7 +100,13 @@ const Navbar = ({ user, setUser }) => {
             <img 
               src="/logo.png" 
               alt="KAI DIVE Logo" 
-              className="h-16 md:h-20 w-auto object-contain" 
+              className="h-16 md:h-20 w-auto object-contain"
+              style={{
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, black 85%, transparent 100%)',
+                WebkitMaskComposite: 'source-in',
+                maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, black 85%, transparent 100%)',
+                maskComposite: 'intersect'
+              }}
             />
           </NavLink>
         </div>

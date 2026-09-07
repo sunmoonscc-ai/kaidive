@@ -21,12 +21,29 @@ const KaiDive = () => {
             </p>
           </div>
           
-          {/* Main Image Placeholder */}
-          <div className="flex-1 w-full h-[300px] md:h-[450px] bg-surface-container-low rounded-3xl border border-white/20 shadow-lg overflow-hidden flex items-center justify-center relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-surface-mist to-transparent opacity-50"></div>
-            <div className="flex flex-col items-center text-on-surface-variant/50">
+          {/* Main Image */}
+          <div 
+            className="flex-1 w-full h-[300px] md:h-[450px] relative"
+            style={{
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+              WebkitMaskComposite: 'source-in',
+              maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+              maskComposite: 'intersect'
+            }}
+          >
+            <img 
+              src="/main.jpg" 
+              alt="KAI DIVE Main" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            {/* Fallback Placeholder (shown if image is not yet saved) */}
+            <div className="absolute inset-0 bg-surface-container-low flex flex-col items-center justify-center text-on-surface-variant/50 hidden">
               <span className="material-symbols-outlined text-5xl mb-2">image</span>
-              <span className="font-medium text-sm">메인 이미지 자리</span>
+              <span className="font-medium text-sm">이미지를 public/main.jpg 로 저장해주세요</span>
             </div>
           </div>
         </div>
