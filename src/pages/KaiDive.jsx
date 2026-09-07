@@ -9,10 +9,10 @@ const KaiDive = () => {
       <section className="relative px-gutter mb-16 md:mb-24">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
           <div className="flex-1 space-y-6">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-sm tracking-widest shadow-sm">
               Welcome to KAI DIVE
             </div>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-[3.2rem] text-deep-ocean font-bold leading-tight md:leading-tight lg:leading-snug tracking-tight">
+            <h1 className="font-display text-[clamp(1.25rem,6vw,2.25rem)] md:text-5xl lg:text-[3.2rem] text-deep-ocean font-bold leading-tight md:leading-tight lg:leading-snug tracking-tight whitespace-nowrap md:whitespace-normal">
               필리핀 세부 막탄에 위치한 <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">PSS 정식 인증 다이빙 센터</span>
             </h1>
@@ -96,6 +96,60 @@ const KaiDive = () => {
         </div>
       </section>
 
+      {/* Contact & QR Section */}
+      <section className="px-gutter mb-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-ocean mb-4">Connect With Us</h2>
+            <p className="text-on-surface-variant text-body-lg">QR 코드를 스캔하거나 아이디를 검색해서 KAI DIVE와 소통하세요!</p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+            {[
+              { name: 'Facebook', id: 'kai sam 720051', icon: 'thumb_up', img: '/qr-facebook.jpg', color: 'bg-[#1877F2] text-white', link: 'https://www.facebook.com/kai.sam.720051' },
+              { name: 'Instagram', id: 'Kaisam2018', icon: 'photo_camera', img: '/qr-instagram.jpg', color: 'bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white', link: 'https://www.instagram.com/Kaisam2018' },
+              { name: 'LINE', id: 'kaidive', icon: 'chat', img: '/qr-line.jpg', color: 'bg-[#00B900] text-white', link: 'https://line.me/ti/p/~kaidive' },
+              { name: 'KakaoTalk', id: 'mawlove3884', icon: 'forum', img: '/qr-kakao.jpg', color: 'bg-[#FEE500] text-[#371d1e]' },
+              { name: 'WeChat', id: 'mawlove2828', icon: 'sms', img: '/qr-wechat.jpg', color: 'bg-[#07C160] text-white' },
+              { name: 'Location', id: 'Kai dive shop', icon: 'location_on', img: '/qr-map.jpg', color: 'bg-[#EA4335] text-white', link: 'https://www.google.com/maps/search/?api=1&query=Kai+dive+shop+Mactan' }
+            ].map((contact) => {
+              const CardWrapper = contact.link ? 'a' : 'div';
+              return (
+                <CardWrapper 
+                  key={contact.name} 
+                  href={contact.link}
+                  target={contact.link ? "_blank" : undefined}
+                  rel={contact.link ? "noopener noreferrer" : undefined}
+                  className={`bg-white rounded-3xl p-4 md:p-6 shadow-[0_10px_30px_rgba(0,174,239,0.06)] border border-surface-container-low flex flex-col items-center transition-all duration-300 text-center ${contact.link ? 'cursor-pointer hover:-translate-y-1 hover:shadow-lg hover:border-primary/30' : 'hover:-translate-y-1'}`}
+                >
+                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-4 shadow-sm ${contact.color}`}>
+                    <span className="material-symbols-outlined text-xl md:text-2xl">{contact.icon}</span>
+                  </div>
+                  <h4 className="font-bold text-deep-ocean text-sm md:text-base mb-1">{contact.name}</h4>
+                  <p className="text-on-surface-variant text-xs md:text-sm font-medium mb-4 break-all">{contact.id}</p>
+                  
+                  <div className="w-full aspect-square bg-surface-container-low rounded-xl border border-white/20 overflow-hidden relative shadow-inner">
+                    <img 
+                      src={contact.img} 
+                      alt={`${contact.name} QR`} 
+                      className="absolute inset-0 w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-on-surface-variant/50 hidden bg-surface-variant/30">
+                      <span className="material-symbols-outlined text-xl md:text-2xl mb-1">qr_code_scanner</span>
+                      <span className="text-[9px] md:text-[10px] text-center px-1 font-semibold">{contact.img}</span>
+                    </div>
+                  </div>
+                </CardWrapper>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Slogan Banner */}
       <section className="px-gutter">
         <div className="max-w-7xl mx-auto bg-deep-ocean rounded-3xl p-10 md:p-16 text-center shadow-xl relative overflow-hidden">
@@ -110,8 +164,8 @@ const KaiDive = () => {
             <h2 className="text-white text-headline-lg md:text-display-sm font-black mb-6">
               이제 선택만 하시면 됩니다.
             </h2>
-            <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4">
-              <p className="text-secondary font-bold text-headline-sm tracking-wide">
+            <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 shadow-lg">
+              <p className="text-secondary-container font-black text-2xl tracking-widest">
                 진짜다KAI~ 재밌다KAI~ 오라KAI~
               </p>
             </div>
