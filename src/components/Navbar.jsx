@@ -125,12 +125,15 @@ const Navbar = ({ user, setUser }) => {
         style={{ background: 'linear-gradient(to bottom, rgb(0, 85, 164) 0%, rgba(255, 255, 255, 1) 100%)' }}
       >
         <div className="flex items-center gap-4">
-          <NavLink to="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <NavLink to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img 
               src="/logo-top.png" 
               alt="KAI DIVE Logo" 
               className="h-16 md:h-20 w-auto object-contain py-2"
             />
+            <span className="font-display font-bold text-xl md:text-2xl text-deep-ocean tracking-wide">
+              KAI DIVE
+            </span>
           </NavLink>
         </div>
         <nav className="hidden md:flex gap-8 items-center">

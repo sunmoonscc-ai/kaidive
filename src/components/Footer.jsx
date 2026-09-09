@@ -2,22 +2,38 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-surface-container-lowest dark:bg-ink-black border-t border-outline-variant/30 hidden md:block">
-      <div className="flex flex-col gap-8 px-gutter py-section-gap-mobile max-w-container-max mx-auto">
-        <div className="flex justify-between items-center flex-wrap gap-4">
-          <Link to="/" className="flex items-center">
-            <img src="/logo-bottom.png" alt="KAI DIVE Logo" className="h-8 md:h-12 w-auto object-contain" />
+    <footer 
+      className="w-full hidden md:block"
+      style={{ background: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgb(0, 85, 164) 100%)' }}
+    >
+      <div className="flex justify-between items-end px-gutter pt-16 md:pt-24 pb-0 max-w-container-max mx-auto">
+        
+        <div className="flex items-end gap-6 md:gap-8">
+          <Link to="/" className="block leading-none">
+            <img 
+              src="/logo-bottom.png" 
+              alt="KAI DIVE Logo" 
+              className="h-20 md:h-28 w-auto object-contain block" 
+              style={{
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 100%)',
+                WebkitMaskComposite: 'source-in',
+                maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 100%)',
+                maskComposite: 'intersect'
+              }}
+            />
           </Link>
-          <div className="flex gap-6 flex-wrap">
-            <Link to="#" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link to="#" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Terms of Service</Link>
-            <Link to="#" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">FAQ</Link>
-            <Link to="#" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Safety Standards</Link>
+          <div className="font-body-md text-body-md text-white/90 pb-3 md:pb-5">
+            © 2026 KAI DIVE CEBU. All Rights Reserved.
           </div>
         </div>
-        <div className="text-center md:text-left font-body-md text-body-md text-secondary">
-          © 2024 KAI DIVE CEBU. All Rights Reserved.
+
+        <div className="flex gap-6 pb-3 md:pb-5">
+          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">Privacy Policy</Link>
+          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">Terms of Service</Link>
+          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">FAQ</Link>
+          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">Safety Standards</Link>
         </div>
+        
       </div>
     </footer>
   );

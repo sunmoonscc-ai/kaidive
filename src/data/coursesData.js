@@ -311,5 +311,35 @@ export const coursesData = {
         image: '/scuba-specialty-6.jpg'
       }
     ]
+  },
+  fun: {
+    type: 'list',
+    title: '펀다이빙(FUN DIVING)',
+    items: [
+      {
+        title: '비치(펀) 다이빙',
+        subtitle: '1인비용 $60 / 다이빙 횟수 2회',
+        description: '[포함사항]\n장비렌탈 풀셋\n\n[별도]\n점심식사',
+        image: '/scuba-fun-1.jpg'
+      },
+      {
+        title: '보트(펀) 다이빙(아일랜드)',
+        subtitle: '상담',
+        description: '[포함사항]\n장비렌탈 풀셋 / 점심식사',
+        image: '/scuba-fun-2.jpg'
+      },
+      {
+        title: '나이트 다이빙',
+        subtitle: '1인비용 $50 / 다이빙 횟수 1회',
+        description: '[포함사항]\n장비렌탈 풀셋\n\n[별도]\n식사 / 후레쉬라이트[1일/$10]',
+        image: '/scuba-fun-3.jpg'
+      },
+      {
+        title: '체험 다이빙',
+        subtitle: '1인 비용 $50 / 다이빙 횟수 1회',
+        description: '[포함사항]\n장비렌탈 풀셋, SSI TRY SCUBA 증명서 발급\n\n[별도]\n점심식사',
+        image: '/scuba-fun-4.jpg'
+      }
+    ]
   }
 };

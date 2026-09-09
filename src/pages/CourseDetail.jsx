@@ -79,7 +79,9 @@ const CourseDetail = () => {
                 {/* Right: Item Details */}
                 <div className="w-full md:w-2/3 flex flex-col justify-center">
                   <h2 className="text-xl font-bold text-error mb-1">{item.title}</h2>
-                  <p className="text-error font-medium mb-4">{item.subtitle}</p>
+                  <div className="bg-surface-container-highest text-on-surface font-semibold py-2 px-4 rounded-xl mt-3 mb-5 text-center text-sm md:text-base">
+                    {item.subtitle}
+                  </div>
                   
                   <div className="space-y-3">
                     <p className="text-on-surface font-semibold leading-relaxed whitespace-pre-line">{item.description}</p>
