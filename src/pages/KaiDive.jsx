@@ -111,16 +111,53 @@ const KaiDive = () => {
               { name: 'LINE', id: 'kaidive', icon: 'chat', img: '/qr-line.jpg', color: 'bg-[#00B900] text-white', link: 'https://line.me/ti/p/17_V1Kct0L' },
               { name: 'KakaoTalk', id: 'mawlove3884', icon: 'forum', img: '/qr-kakao.jpg', color: 'bg-[#FEE500] text-[#371d1e]' },
               { name: 'WeChat', id: 'mawlove2828', icon: 'sms', img: '/qr-wechat.jpg', color: 'bg-[#07C160] text-white' },
-              { name: 'Location', id: 'Kai dive shop', icon: 'location_on', img: '/qr-map.jpg', color: 'bg-[#EA4335] text-white', link: 'https://www.google.com/maps/search/?api=1&query=Kai+dive+shop+Mactan' }
+              { name: 'Location', id: 'Kai dive shop', icon: 'location_on', img: '/qr-map.jpg', color: 'bg-[#EA4335] text-white', link: 'https://www.google.com/maps/search/?api=1&query=카이+다이브+막탄' }
             ].map((contact) => {
-              const CardWrapper = contact.link ? 'a' : 'div';
+              const hasLink = !!contact.link;
+              const CardWrapper = hasLink ? 'a' : 'div';
+              
+              const clickProps = hasLink ? {
+                href: contact.link,
+                target: "_blank",
+                rel: "noopener noreferrer"
+              } : {
+                onClick: () => {
+                  if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(contact.id).then(() => {
+                      alert(`${contact.name} 아이디(${contact.id})가 복사되었습니다.\n해당 앱을 실행하여 계정 검색에 붙여넣기 해주세요.`);
+                    }).catch(err => {
+                      alert('아이디 복사에 실패했습니다. 수동으로 복사해주세요.');
+                    });
+                  } else {
+                    // Fallback for older browsers or non-secure contexts
+                    const textArea = document.createElement("textarea");
+                    textArea.value = contact.id;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                      document.execCommand('copy');
+                      alert(`${contact.name} 아이디(${contact.id})가 복사되었습니다.\n해당 앱을 실행하여 계정 검색에 붙여넣기 해주세요.`);
+                    } catch (err) {
+                      alert('아이디 복사에 실패했습니다. 수동으로 복사해주세요.');
+                    }
+                    document.body.removeChild(textArea);
+                  }
+                },
+                role: "button",
+                tabIndex: 0,
+                onKeyDown: (e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.currentTarget.click();
+                  }
+                }
+              };
+
               return (
                 <CardWrapper 
                   key={contact.name} 
-                  href={contact.link}
-                  target={contact.link ? "_blank" : undefined}
-                  rel={contact.link ? "noopener noreferrer" : undefined}
-                  className={`bg-white rounded-3xl p-4 md:p-6 shadow-[0_10px_30px_rgba(0,174,239,0.06)] border border-surface-container-low flex flex-col items-center transition-all duration-300 text-center ${contact.link ? 'cursor-pointer hover:-translate-y-1 hover:shadow-lg hover:border-primary/30' : 'hover:-translate-y-1'}`}
+                  {...clickProps}
+                  className="bg-white rounded-3xl p-4 md:p-6 shadow-[0_10px_30px_rgba(0,174,239,0.06)] border border-surface-container-low flex flex-col items-center transition-all duration-300 text-center cursor-pointer hover:-translate-y-1 hover:shadow-lg hover:border-primary/30 w-full"
                 >
                   <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center mb-3 md:mb-4 shadow-sm ${contact.color}`}>
                     <span className="material-symbols-outlined text-xl md:text-2xl">{contact.icon}</span>
@@ -129,19 +166,28 @@ const KaiDive = () => {
                   <p className="text-on-surface-variant text-xs md:text-sm font-medium mb-4 break-all">{contact.id}</p>
                   
                   <div className="w-full aspect-square bg-surface-container-low rounded-xl border border-white/20 overflow-hidden relative shadow-inner">
-                    <img 
-                      src={contact.img} 
-                      alt={`${contact.name} QR`} 
-                      className="absolute inset-0 w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextSibling.style.display = 'flex';
-                      }}
-                    />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-on-surface-variant/50 hidden bg-surface-variant/30">
-                      <span className="material-symbols-outlined text-xl md:text-2xl mb-1">qr_code_scanner</span>
-                      <span className="text-[9px] md:text-[10px] text-center px-1 font-semibold">{contact.img}</span>
-                    </div>
+                    {hasLink ? (
+                      <>
+                        <img 
+                          src={contact.img} 
+                          alt={`${contact.name} QR`} 
+                          className="absolute inset-0 w-full h-full object-cover"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'flex';
+                          }}
+                        />
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-on-surface-variant/50 hidden bg-surface-variant/30">
+                          <span className="material-symbols-outlined text-xl md:text-2xl mb-1">qr_code_scanner</span>
+                          <span className="text-[9px] md:text-[10px] text-center px-1 font-semibold">{contact.img}</span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-on-surface-variant/70 bg-surface-variant/20 hover:bg-primary/5 transition-colors">
+                        <span className="material-symbols-outlined text-3xl md:text-4xl mb-2 text-primary">content_copy</span>
+                        <span className="text-xs md:text-sm font-semibold text-primary">클릭하여 복사</span>
+                      </div>
+                    )}
                   </div>
                 </CardWrapper>
               );
