@@ -9,6 +9,7 @@ import Gallery from './pages/Gallery';
 import Booking from './pages/Booking';
 import Admin from './pages/Admin';
 import CourseDetail from './pages/CourseDetail';
+import MyPage from './pages/MyPage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,6 +31,7 @@ function App() {
             <Route path="/gallery" element={<Gallery user={user} />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/admin" element={<Admin user={user} />} />
+            <Route path="/mypage" element={<MyPage user={user} />} />
           </Routes>
         </main>
         <Footer />

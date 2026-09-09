@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { db, auth, googleProvider } from '../firebase';
 import { signInWithPopup, signOut } from 'firebase/auth';
-
-const ADMIN_EMAILS = ['hdcc6th@gmail.com', 'sunmoon.scc@gmail.com'];
+import { isAdmin } from '../config/roles';
 
 const Navbar = ({ user, setUser }) => {
   const { t, i18n } = useTranslation();
@@ -36,11 +35,13 @@ const Navbar = ({ user, setUser }) => {
   ]);
   const [activeMobileMenu, setActiveMobileMenu] = useState(null);
   const langRef = useRef(null);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (langRef.current && !langRef.current.contains(event.target)) {
         setIsLangOpen(false);
+        setIsProfileOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -167,7 +168,7 @@ const Navbar = ({ user, setUser }) => {
               )}
             </div>
           ))}
-          {user && ADMIN_EMAILS.includes(user.email) && (
+          {user && isAdmin(user.email) && (
             <NavLink to="/admin" className={({ isActive }) => `font-body-md text-body-md hover:opacity-80 transition-opacity ${
               isActive ? 'text-error font-semibold border-b-2 border-error' : 'text-error font-medium'
             }`}>
@@ -177,12 +178,51 @@ const Navbar = ({ user, setUser }) => {
         </nav>
         <div className="flex items-center gap-4 relative" ref={langRef}>
           {user ? (
-            <div className="flex items-center gap-3 bg-surface-container-low rounded-xl px-3 py-1.5 shadow-sm">
-              <img src={user.picture} alt={user.name} className="w-6 h-6 rounded-full" referrerPolicy="no-referrer" />
-              <span className="text-on-surface text-sm font-medium max-w-[80px] truncate">{user.name}</span>
-              <button onClick={handleLogout} className="text-error hover:opacity-80 text-sm font-semibold transition-opacity ml-1">
-                {t('navbar.logout')}
+            <div className="relative">
+              <button 
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                className="w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center shadow-md hover:scale-105 transition-transform"
+              >
+                {user.picture ? (
+                  <img src={user.picture} alt="Profile" className="w-full h-full rounded-full object-cover" referrerPolicy="no-referrer" />
+                ) : (
+                  user.name ? user.name.charAt(0).toUpperCase() : 'U'
+                )}
               </button>
+
+              {isProfileOpen && (
+                <div className="absolute top-full right-0 mt-2 bg-white rounded-xl shadow-xl py-2 min-w-[180px] flex flex-col z-50 border border-gray-100 animate-fadeIn">
+                  <div className="px-4 py-2 border-b border-gray-100 text-xs text-gray-500 mb-1 truncate">
+                    {user.email}
+                  </div>
+                  <NavLink 
+                    to="/mypage" 
+                    onClick={() => setIsProfileOpen(false)}
+                    className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 text-left w-full flex items-center gap-3 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">person</span> 마이페이지
+                  </NavLink>
+                  {isAdmin(user.email) && (
+                    <NavLink 
+                      to="/admin" 
+                      onClick={() => setIsProfileOpen(false)}
+                      className="md:hidden px-4 py-2.5 text-sm text-error font-medium hover:bg-red-50 text-left w-full flex items-center gap-3 transition-colors"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">admin_panel_settings</span> 관리자 메뉴
+                    </NavLink>
+                  )}
+                  <div className="border-t border-gray-100 my-1"></div>
+                  <button 
+                    onClick={() => {
+                      setIsProfileOpen(false);
+                      handleLogout();
+                    }} 
+                    className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 text-left w-full flex items-center gap-3 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">logout</span> 로그아웃
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
             <button 
@@ -194,7 +234,10 @@ const Navbar = ({ user, setUser }) => {
           )}
 
           <div 
-            onClick={() => setIsLangOpen(!isLangOpen)}
+            onClick={() => {
+              setIsLangOpen(!isLangOpen);
+              setIsProfileOpen(false);
+            }}
             className="rounded-xl px-4 py-2 flex gap-2 items-center font-label-sm text-label-sm cursor-pointer shadow-sm transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container"
           >
             <span>{getLangLabel(i18n.resolvedLanguage || i18n.language || 'en')}</span>
