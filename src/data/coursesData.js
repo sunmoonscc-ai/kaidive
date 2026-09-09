@@ -341,5 +341,39 @@ export const coursesData = {
         image: '/scuba-fun-4.jpg'
       }
     ]
+  },
+  package: {
+    type: 'list',
+    title: '다이빙패키지(DIVING PACKAGE)',
+    items: [
+      {
+        title: '[다이빙패키지 I] 오픈워터(OW) + 어드밴스(AA)',
+        subtitle: '4일과정 / 1인 교육 480$(할인적용)',
+        description: '[포함사항]\n라이센스 발급비용, 스쿠버다이빙 장비 풀세트, 사진 및 동영상 촬영\n점심식사, 비치타올, 샤워시설, 막탄내 픽업 / 드랍',
+        requirements: '※ 숙박비용은 별도 입니다.',
+        image: '/scuba-package-1.jpg'
+      },
+      {
+        title: '[다이빙패키지 II] 오픈워터(OW) + 비치(FUN)다이빙',
+        subtitle: '3일과정 / 1인 교육 300$',
+        description: '[포함사항]\n라이센스 발급비용, 스쿠버다이빙 장비 풀세트, 사진 및 동영상 촬영\n점심식사, 비치타올, 샤워시설, 막탄내 픽업 / 드랍',
+        requirements: '※ 숙박비용은 별도 입니다.',
+        image: '/scuba-package-2.jpg'
+      },
+      {
+        title: '[다이빙패키지 III] 어드밴스(AA) + 비치(FUN)다이빙',
+        subtitle: '3일과정 / 1인 교육 300$',
+        description: '[포함사항]\n라이센스 발급비용, 스쿠버다이빙 장비 풀세트, 사진 및 동영상 촬영\n점심식사, 비치타올, 샤워시설, 막탄내 픽업 / 드랍',
+        requirements: '※ 숙박비용은 별도 입니다.',
+        image: '/scuba-package-3.jpg'
+      },
+      {
+        title: '[다이빙패키지 IV] 업그레이드 교육(다이빙 재교육)',
+        subtitle: '1일과정 / 1인 교육 100$',
+        description: '[포함사항]\n스쿠버다이빙 장비 풀세트, 사진 및 동영상 촬영\n점심식사, 비치타올, 샤워시설.',
+        requirements: '※ 숙박비용은 별도 입니다.',
+        image: '/scuba-package-4.jpg'
+      }
+    ]
   }
 };

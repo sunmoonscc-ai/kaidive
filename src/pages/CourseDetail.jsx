@@ -85,7 +85,7 @@ const CourseDetail = () => {
                   
                   <div className="space-y-3">
                     <p className="text-on-surface font-semibold leading-relaxed whitespace-pre-line">{item.description}</p>
-                    <p className="text-on-surface-variant text-sm mt-2">{item.requirements}</p>
+                    <p className="text-error font-medium text-sm mt-2">{item.requirements}</p>
                   </div>
                 </div>
               </div>
