@@ -28,7 +28,7 @@ const Navbar = ({ user, setUser }) => {
       submenus: [
         { key: 'instructor', path: '/programs/instructor', ko: '강사' },
         { key: 'assistant', path: '/programs/assistant', ko: '보조강사' },
-        { key: 'specialty', path: '/programs/specialty', ko: '스페셜티강사' }
+        { key: 'specialty-instructor', path: '/programs/specialty-instructor', ko: '스페셜티강사' }
       ]
     },
     { key: 'booking', path: '/booking', en: 'Booking', ko: '예약', ja: '予約', 'zh-CN': '预订', 'zh-TW': '預訂' },
@@ -131,7 +131,7 @@ const Navbar = ({ user, setUser }) => {
               alt="KAI DIVE Logo" 
               className="h-16 md:h-20 w-auto object-contain py-2"
             />
-            <span className="font-display font-bold text-xl md:text-2xl text-deep-ocean tracking-wide">
+            <span className="font-display font-bold text-xl md:text-2xl text-white tracking-wide">
               KAI DIVE
             </span>
           </NavLink>

@@ -181,6 +181,43 @@ const CourseDetail = () => {
             </div>
           )}
 
+          {/* Extra Specs Table (Full Width) */}
+          {course.extraSpecs && (
+            <div className="mt-12">
+              {course.extraSpecsTitle && (
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl md:text-3xl font-bold text-primary mb-2">
+                    {course.extraSpecsTitle}
+                  </h3>
+                  {course.extraSpecsSubtitle && (
+                    <p className="font-bold text-deep-ocean">{course.extraSpecsSubtitle}</p>
+                  )}
+                </div>
+              )}
+              <div className="bg-white rounded-3xl border border-surface-variant shadow-sm overflow-hidden">
+                {course.extraSpecs.map((spec, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`flex flex-col sm:flex-row border-b border-surface-variant last:border-b-0 ${idx % 2 === 0 ? 'bg-surface-bright' : 'bg-white'}`}
+                  >
+                    <div className="sm:w-1/4 p-4 md:p-5 font-bold text-deep-ocean flex items-center sm:border-r border-surface-variant whitespace-pre-wrap">
+                      {spec.label}
+                    </div>
+                    <div className="sm:w-3/4 p-4 md:p-5 text-on-surface text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                      {spec.highlightWords ? (
+                        renderHighlightedText(spec.value, spec.highlightWords)
+                      ) : spec.highlight ? (
+                        renderHighlightedText(spec.value, [{ word: spec.highlight, color: spec.highlightColor }])
+                      ) : (
+                        spec.value
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Warnings */}
           {course.warnings && (
             <div className="mt-6 space-y-1 px-4 text-error font-medium text-sm">
