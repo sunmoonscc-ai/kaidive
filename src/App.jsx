@@ -27,7 +27,7 @@ function App() {
             <Route path="/kaidive/:courseId" element={<CourseDetail />} />
             <Route path="/programs" element={<Programs />} />
             <Route path="/programs/:courseId" element={<CourseDetail />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/gallery" element={<Gallery user={user} />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/admin" element={<Admin user={user} />} />
           </Routes>

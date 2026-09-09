@@ -1,7 +1,8 @@
 rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /gallery/{document=**} {
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /gallery/{allPaths=**} {
       allow read: if true;
       allow write: if request.auth != null && (
         request.auth.token.email == 'hdcc6th@gmail.com' ||
@@ -9,10 +10,8 @@ service cloud.firestore {
         request.auth.token.email == 'kaidiveshop@gmail.com'
       );
     }
-    
-    // Testing only. We will secure this later for admins only. (Other collections)
-    match /{document=**} {
-      allow read, write: if true;
+    match /{allPaths=**} {
+      allow read, write: if false;
     }
   }
 }

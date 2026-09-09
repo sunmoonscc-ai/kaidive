@@ -1,78 +1,152 @@
-const Gallery = () => {
+import React, { useState, useEffect } from 'react';
+import { isAdmin } from '../config/roles';
+import { GALLERY_SCRIPT_URL } from '../config/api';
+import GalleryModal from '../components/Gallery/GalleryModal';
+import Lightbox from '../components/Gallery/Lightbox';
+
+const Gallery = ({ user }) => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('all'); // all, photo, youtube
+
+  const [lightboxItem, setLightboxItem] = useState(null);
+
+  const fetchInitialData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(GALLERY_SCRIPT_URL);
+      const data = await response.json();
+      
+      // Filter out invalid items just in case
+      const validData = data.filter(item => item.url && item.type);
+      setItems(validData);
+    } catch (error) {
+      console.error("Error fetching gallery:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchInitialData();
+  }, []);
+
+  const handleDelete = async (e, id) => {
+    e.stopPropagation();
+    if (!window.confirm('정말 삭제하시겠습니까?')) return;
+    
+    try {
+      const response = await fetch(GALLERY_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'delete', id })
+      });
+      
+      const result = await response.json();
+      
+      if (result.status === 'success') {
+        setItems(items.filter(item => item.id !== id));
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      alert('삭제 중 오류가 발생했습니다.');
+    }
+  };
+
+  const getImageUrl = (url) => {
+    if (url && url.includes('drive.google.com')) {
+      const idMatch = url.match(/id=([^&]+)/);
+      if (idMatch && idMatch[1]) {
+        return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w1000`;
+      }
+    }
+    return url;
+  };
+
+  const filteredItems = items.filter(item => filter === 'all' || item.type === filter);
+
   return (
-    <div className="flex-1 w-full max-w-container-max mx-auto px-gutter pt-section-gap-mobile md:pt-section-gap-desktop pb-32">
-      <div className="mb-12 text-center max-w-3xl mx-auto">
-        <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-deep-ocean mb-4">
-          The Blue Community
-        </h1>
-        <p className="font-body-lg text-body-lg text-on-surface-variant">
-          Dive into our vibrant underwater gallery and see what fellow explorers are saying. Share your moments using #KaiDiveCebu.
-        </p>
+    <div className="flex-1 w-full max-w-container-max mx-auto px-gutter pt-section-gap-mobile md:pt-section-gap-desktop pb-32 relative">
+
+      {/* Filter Tabs */}
+      <div className="flex justify-center gap-4 mb-12 flex-wrap">
+        {['all', 'photo', 'youtube'].map((f) => (
+          <button
+            key={f}
+            onClick={() => setFilter(f)}
+            className={`px-6 py-2 rounded-full font-label-md transition-all ${
+              filter === f 
+                ? 'bg-primary text-white shadow-md' 
+                : 'bg-primary-container text-on-primary-container hover:bg-primary-fixed'
+            }`}
+          >
+            {f === 'all' ? '전체보기' : f === 'photo' ? '사진' : '유튜브'}
+          </button>
+        ))}
       </div>
 
-      <div className="masonry-grid">
-        <div className="masonry-item rounded-xl overflow-hidden relative group cursor-pointer shadow-[0_10px_30px_rgba(0,174,239,0.08)]">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-je75APGZFwOkN1aAuaxTl0RNgVBYPtd26CMNMfu_pJbtgxscfunIN7cL31TyyyBPrWOzAfd45qvAqh61JfmpQLMdb_GIcG47vt1GGXjYP_XAiiyx4C71_OhBF31OGPLdVelW5wnTv699c0Eri1SWG1hbL8Rr6fpGZB3If0I1vO4EGL5ouQjmtEoMdq2tvPzZdTo15nIpacS8CVxGxOi6q-UspZdYSXZZmE5hO99U-Ssro80iTEq7" className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" alt="Gallery item" />
-          <div className="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJWNyjwmWHFflThx7IGv8rorKO9pmZGIZjUHVOPOTUGS7MIi0noSY-Z-Fk8HcH6Tfy_GwdaWaQQ8pBmDDRzwGTIumyALB31MlUuWzRhanbSvxIijVsYOBuOspbNhG7s26njGqoeokJoviavExDZF2fZU0HVYJ32ap9N8N_3lB-9I8rtG9OsEjuEha7GIcijyyblu6fwpthIgZrDvBwChihI3tUjbsjZV0qXeW9qwyz4F34a9kif_gB" className="w-10 h-10 rounded-full border-2 border-white/50" alt="Avatar" />
-              <span className="font-label-sm text-label-sm text-white">@ocean_explorer</span>
-            </div>
-            <div className="flex gap-4">
-              <button className="flex items-center gap-1 text-white hover:text-primary-fixed transition-colors"><span className="material-symbols-outlined text-sm">favorite</span> 241</button>
-              <button className="flex items-center gap-1 text-white hover:text-primary-fixed transition-colors"><span className="material-symbols-outlined text-sm">mode_comment</span> 18</button>
-            </div>
-          </div>
-        </div>
+      {/* Gallery Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {filteredItems.map((item) => (
+          <div 
+            key={item.id} 
+            className="aspect-square rounded-xl overflow-hidden relative group cursor-pointer shadow-sm hover:shadow-md transition-shadow bg-gray-100"
+            onClick={() => setLightboxItem(item)}
+          >
+            {item.type === 'photo' && (
+              <img src={getImageUrl(item.url)} alt={item.title || 'Gallery Item'} className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+            )}
+            {item.type === 'youtube' && (
+              <div className="w-full h-full">
+                <img src={`https://img.youtube.com/vi/${item.url.split('v=')[1]?.split('&')[0] || item.url.split('/').pop()}/hqdefault.jpg`} alt="YouTube Thumbnail" className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-white text-5xl drop-shadow-lg opacity-80 group-hover:opacity-100 transition-opacity">play_circle</span>
+                </div>
+              </div>
+            )}
 
-        <div className="masonry-item glass-card p-8 rounded-xl border border-white/20 shadow-[0_10px_30px_rgba(0,174,239,0.08)]">
-          <div className="flex items-center gap-1 text-[#FF7F50] mb-4">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-          </div>
-          <p className="font-body-lg text-body-lg text-on-surface mb-6 italic">"Absolutely phenomenal experience. The gear was top-notch, the guides were incredibly knowledgeable, and the reefs... unreal. Felt like a luxury escape from start to finish."</p>
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md text-headline-md font-bold">M</div>
-            <div>
-              <div className="font-label-sm text-label-sm text-on-surface">Mark D.</div>
-              <div className="font-label-sm text-label-sm text-on-surface-variant font-normal">Advanced Open Water Diver</div>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+              <div className="flex flex-col gap-1 mb-2 pointer-events-auto">
+                {item.title && <h3 className="text-white font-headline-sm">{item.title}</h3>}
+                {item.description && <p className="text-white/80 font-body-sm line-clamp-2">{item.description}</p>}
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="masonry-item rounded-xl overflow-hidden relative group cursor-pointer shadow-[0_10px_30px_rgba(0,174,239,0.08)]">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX8EIHY055yhOFjfETEv3oPmoP3e_rha8l0Okh8ANRIEJRQtNnbFP2Yu7x2Fren3-ZBJE8-E-rJfSWtRt97_zzalUEvsROWHThnQZTiC8ElEtaxjByyTSZ1heTCNNDvKPgnh_xidoU9lybu3hZwWMXsK4K23yGQ448uxbef7KrtfOmCmOox3zfgc3PLhVS2Hyx4Hra3J3giODl-sTtR3agx6mJ70u6LyHEyoNDTPKPaoC424MDfXSJ" className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" alt="Gallery item" />
-          <div className="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEY2XywwUzCuBNus_tf4UfCKl_LGS5iVFxaumPdYr6HYf8oY-uDGLwFFfcv111-4rt_cyLtoz66Ph_R2hRpDAM2dPxIW0TMKKCWsrPT2HPylF9D1Ma24KZnwChcpGFl3os7f7HwNNkQEBBG0o7dNxwEBJmrTgZUHW4U1abMk0NsXJr6L81pgugYBuROinW4kFkv1C7CGTadLVxgjNVYNRDhA_F6M1_QwXaxF0xqvyJxrpDkUdvIuFr" className="w-10 h-10 rounded-full border-2 border-white/50" alt="Avatar" />
-              <span className="font-label-sm text-label-sm text-white">@wanderlust_diver</span>
-            </div>
-            <div className="flex gap-4">
-              <button className="flex items-center gap-1 text-white hover:text-primary-fixed transition-colors"><span className="material-symbols-outlined text-sm">favorite</span> 512</button>
-            </div>
+            {/* Admin Controls */}
+            {isAdmin(user?.email) && (
+              <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button 
+                  onClick={(e) => handleDelete(e, item.id)}
+                  className="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors shadow-lg pointer-events-auto"
+                  title="삭제"
+                >
+                  <span className="material-symbols-outlined text-sm">delete</span>
+                </button>
+              </div>
+            )}
           </div>
-        </div>
-
-        <div className="masonry-item bg-primary text-on-primary rounded-xl p-8 shadow-[0_10px_30px_rgba(0,174,239,0.08)] flex flex-col items-center justify-center text-center">
-          <span className="material-symbols-outlined text-5xl mb-4">photo_camera</span>
-          <h3 className="font-headline-md text-headline-md mb-2">Share Your Journey</h3>
-          <p className="font-body-md text-body-md text-primary-fixed mb-6">Tag @KaiDiveCebu to be featured in our community gallery.</p>
-          <button className="bg-[#FF7F50] text-white px-6 py-3 rounded-lg font-label-sm text-label-sm hover:saturate-150 transition-all shadow-md active:scale-95">Upload Photo</button>
-        </div>
-
-        <div className="masonry-item rounded-xl overflow-hidden relative group cursor-pointer shadow-[0_10px_30px_rgba(0,174,239,0.08)]">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ1YVgGI1LDjAUkJfSnnSYx4OCpuVTx6OyF7gkjieELXU37aCxLCzCuHts90uT-zmbg0U5uspqnwDS4qDmLhyTX5T6mtJmC1-vzFfQbFfoKIAW5mLuecuzL41mxH0JLfmLHsSC_MgWjYDXUeEknaf73r22sQoxqRWz2pyme209BywfDkb1M16XyqRMsJ13N6PlRaS5QQnSFHnZnmcFratBAJ8Y6at6wTiN__0LwrT2WCJanYCgBk_E" className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" alt="Gallery item" />
-          <div className="absolute inset-0 bg-gradient-to-t from-deep-ocean/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuACDzRICRxfbVEQoG3hHyVHgBFc7A9Is8xlQjwOo8p-qijOaCBUtMc5hoDM8DoUJp7qqiFagYs4kHLtSdASiiWwo5YahfqZ6cKoX5Q1xGjpKdJ_afFcwkIgpO7d6-2iXeFWjOEPIdAqTVSMTIea3OG6_6eV8_B4Fw30xktpiLZWdXW_AjlIZdeY7E8AhEG7moc_dFsyB5iXk6h57iM7OYOzp9H12yInOPCksrfP0mm7NrF69pRFNOTO" className="w-10 h-10 rounded-full border-2 border-white/50" alt="Avatar" />
-              <span className="font-label-sm text-label-sm text-white">@macro_magic</span>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
+
+      {loading && (
+        <div className="flex justify-center py-12">
+          <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+        </div>
+      )}
+
+      {!loading && items.length === 0 && (
+        <div className="text-center py-12 text-on-surface-variant">
+          아직 등록된 미디어가 없습니다.
+        </div>
+      )}
+      
+      <Lightbox 
+        item={lightboxItem} 
+        onClose={() => setLightboxItem(null)} 
+      />
     </div>
   );
 };

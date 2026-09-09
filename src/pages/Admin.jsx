@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import I18nAdmin from '../components/admin/I18nAdmin';
-
-const ADMIN_EMAILS = ['hdcc6th@gmail.com', 'sunmoon.scc@gmail.com'];
+import { isAdmin } from '../config/roles';
+import GalleryModal from '../components/Gallery/GalleryModal';
 
 const Admin = ({ user }) => {
   const [activeTab, setActiveTab] = useState('users');
   const { t } = useTranslation();
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
 
   // Check if user is logged in and is an admin
-  if (!user || !ADMIN_EMAILS.includes(user.email)) {
+  if (!user || !isAdmin(user.email)) {
     return <Navigate to="/" replace />;
   }
 
@@ -63,9 +63,32 @@ const Admin = ({ user }) => {
         )}
         {activeTab === 'gallery' && (
           <div>
-            <h3 className="text-xl font-bold mb-4 text-deep-ocean">{t('admin.galleryMgmt')}</h3>
-            <p className="text-on-surface-variant">{t('admin.galleryDesc')}</p>
-             {/* TODO: Implement Gallery Admin Component */}
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h3 className="text-xl font-bold text-deep-ocean">{t('admin.galleryMgmt', '갤러리 관리')}</h3>
+                <p className="text-on-surface-variant">{t('admin.galleryDesc', '사진/비디오를 업로드하고 삭제합니다.')}</p>
+              </div>
+              <button 
+                onClick={() => setIsGalleryModalOpen(true)}
+                className="bg-primary text-on-primary px-4 py-2 rounded-lg font-semibold hover:opacity-90 flex items-center gap-2"
+              >
+                <span className="material-symbols-outlined text-sm">add</span> 새 미디어 추가
+              </button>
+            </div>
+            
+            <div className="bg-white p-6 rounded-xl border">
+              <p className="text-on-surface-variant">
+                갤러리 항목은 <a href="/gallery" className="text-primary hover:underline">갤러리 페이지</a>에서 직접 삭제할 수 있습니다.
+              </p>
+            </div>
+
+            <GalleryModal 
+              isOpen={isGalleryModalOpen} 
+              onClose={() => setIsGalleryModalOpen(false)} 
+              onUploadComplete={() => {
+                alert('업로드가 완료되었습니다. 갤러리 페이지에서 확인하세요.');
+              }}
+            />
           </div>
         )}
       </main>
