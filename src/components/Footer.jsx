@@ -5,7 +5,9 @@ const Footer = () => {
     <footer className="w-full bg-surface-container-lowest dark:bg-ink-black border-t border-outline-variant/30 hidden md:block">
       <div className="flex flex-col gap-8 px-gutter py-section-gap-mobile max-w-container-max mx-auto">
         <div className="flex justify-between items-center flex-wrap gap-4">
-          <Link to="/" className="font-headline-md text-headline-md text-primary font-bold">KAI DIVE</Link>
+          <Link to="/" className="flex items-center">
+            <img src="/logo-bottom.png" alt="KAI DIVE Logo" className="h-8 md:h-12 w-auto object-contain" />
+          </Link>
           <div className="flex gap-6 flex-wrap">
             <Link to="#" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="#" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">Terms of Service</Link>
