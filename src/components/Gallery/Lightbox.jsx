@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 
 const Lightbox = ({ item, onClose }) => {
   useEffect(() => {
-    // Prevent scrolling on body when lightbox is open
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
+    if (item) {
+      // Prevent scrolling on body when lightbox is open
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
+    }
+  }, [item]);
 
   if (!item) return null;
 
@@ -19,6 +21,12 @@ const Lightbox = ({ item, onClose }) => {
       }
     }
     return url;
+  };
+
+  const getYouTubeId = (url) => {
+    if (!url) return null;
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^&?]+)/);
+    return match ? match[1] : null;
   };
 
   return (
@@ -53,7 +61,7 @@ const Lightbox = ({ item, onClose }) => {
             <iframe
               width="100%"
               height="100%"
-              src={`https://www.youtube.com/embed/${item.url.split('v=')[1]?.split('&')[0] || item.url.split('/').pop()}?autoplay=1`}
+              src={`https://www.youtube.com/embed/${getYouTubeId(item.url)}?autoplay=1`}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

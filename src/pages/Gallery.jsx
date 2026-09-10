@@ -65,6 +65,12 @@ const Gallery = ({ user }) => {
     return url;
   };
 
+  const getYouTubeId = (url) => {
+    if (!url) return null;
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^&?]+)/);
+    return match ? match[1] : null;
+  };
+
   const filteredItems = items.filter(item => filter === 'all' || item.type === filter);
 
   return (
@@ -100,7 +106,7 @@ const Gallery = ({ user }) => {
             )}
             {item.type === 'youtube' && (
               <div className="w-full h-full">
-                <img src={`https://img.youtube.com/vi/${item.url.split('v=')[1]?.split('&')[0] || item.url.split('/').pop()}/hqdefault.jpg`} alt="YouTube Thumbnail" className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+                <img src={`https://img.youtube.com/vi/${getYouTubeId(item.url)}/hqdefault.jpg`} alt="YouTube Thumbnail" className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="material-symbols-outlined text-white text-5xl drop-shadow-lg opacity-80 group-hover:opacity-100 transition-opacity">play_circle</span>
                 </div>
