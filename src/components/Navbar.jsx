@@ -30,7 +30,7 @@ const Navbar = ({ user, setUser }) => {
         { key: 'specialty-instructor', path: '/programs/specialty-instructor', ko: '스페셜티강사' }
       ]
     },
-    { key: 'booking', path: '/booking', en: 'Booking', ko: '예약', ja: '予約', 'zh-CN': '预订', 'zh-TW': '預訂' },
+    { key: 'booking', path: '/booking', en: 'Consultation', ko: '상담', ja: '予約', 'zh-CN': '预订', 'zh-TW': '預訂' },
     { key: 'gallery', path: '/gallery', en: 'Gallery', ko: '갤러리', ja: 'ギャラリー', 'zh-CN': '图库', 'zh-TW': '圖庫' }
   ]);
   const [activeMobileMenu, setActiveMobileMenu] = useState(null);

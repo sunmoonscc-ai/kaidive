@@ -80,18 +80,18 @@ const resources = {
       navbar: {
         home: "홈",
         programs: "프로그램",
-        booking: "예약",
+        booking: "상담",
         gallery: "갤러리",
         login: "로그인",
         logout: "로그아웃"
       },
       booking: {
-        title: "예약하기",
-        desc: "세부에서의 프리미엄 다이빙 경험을 예약하세요. 아래 세부 정보를 작성하시거나, 빠른 상담을 위해 메신저로 직접 문의해주세요.",
+        title: "상담하기",
+        desc: "세부에서의 프리미엄 다이빙 경험을 상담받아보세요. 아래 세부 정보를 작성하시거나, 빠른 상담을 위해 메신저로 직접 문의해주세요.",
         firstName: "이름 (영문)",
         lastName: "성 (영문)",
         email: "이메일 주소",
-        selectDate: "예약 날짜 선택",
+        selectDate: "상담 날짜 선택",
         divingProgram: "다이빙 프로그램",
         selectExperience: "프로그램을 선택하세요",
         discover: "체험 다이빙 (Discover Scuba Diving)",
@@ -104,7 +104,7 @@ const resources = {
         ja: "일본어",
         specialReq: "특별 요청 / 참고 사항",
         specialReqPlaceholder: "식단 요구사항, 장비 사이즈 등",
-        submit: "예약 요청",
+        submit: "상담 요청",
         instant: "빠른 상담",
         instantDesc: "채팅을 선호하시나요? 편하신 메신저로 문의하시면 빠르게 답변해 드립니다.",
         location: "위치"

@@ -47,7 +47,7 @@ const Booking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!BOOKING_SCRIPT_URL) {
-      alert("예약 전송용 API URL이 설정되지 않았습니다. 관리자에게 문의하세요.");
+      alert("상담 전송용 API URL이 설정되지 않았습니다. 관리자에게 문의하세요.");
       return;
     }
 
@@ -63,7 +63,7 @@ const Booking = () => {
       
       const result = await response.json();
       if (result.status === 'success') {
-        alert("예약 요청이 성공적으로 전송되었습니다. 확인 후 연락드리겠습니다!");
+        alert("상담 요청이 성공적으로 전송되었습니다. 확인 후 연락드리겠습니다!");
         setFormData({
           name: '',
           phone: '',
@@ -77,7 +77,7 @@ const Booking = () => {
         alert("전송 중 오류가 발생했습니다: " + result.message);
       }
     } catch (error) {
-      alert("예약 요청 전송에 실패했습니다. 잠시 후 다시 시도해주세요.\n에러: " + error.message);
+      alert("상담 요청 전송에 실패했습니다. 잠시 후 다시 시도해주세요.\n에러: " + error.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -96,9 +96,9 @@ const Booking = () => {
   return (
     <div className="pt-24 md:pt-32 pb-section-gap-mobile md:pb-section-gap-desktop px-gutter max-w-container-max mx-auto min-h-screen">
       <div className="mb-12">
-        <h1 className="font-display-lg-mobile md:font-display-lg text-deep-ocean mb-4">예약하기</h1>
+        <h1 className="font-display-lg-mobile md:font-display-lg text-deep-ocean mb-4">상담하기</h1>
         <p className="font-body-lg text-on-surface-variant max-w-2xl">
-          세부에서의 프리미엄 다이빙 경험을 예약하세요. 아래 정보를 작성하시거나, 빠른 상담을 위해 메신저로 직접 문의해주세요.
+          세부에서의 프리미엄 다이빙 경험을 상담받아보세요. 아래 정보를 작성하시거나, 빠른 상담을 위해 메신저로 직접 문의해주세요.
         </p>
       </div>
 
@@ -155,7 +155,7 @@ const Booking = () => {
               disabled={isSubmitting}
               className={`bg-[#FF7F50] text-white px-8 py-4 rounded-lg font-label-sm text-label-sm uppercase hover:saturate-150 transition-all active:scale-95 inline-flex items-center gap-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              {isSubmitting ? '전송 중...' : '예약요청 (Request Booking)'}
+              {isSubmitting ? '전송 중...' : '상담요청 (Request Consultation)'}
               <span className="material-symbols-outlined text-sm">send</span>
             </button>
           </form>
@@ -198,18 +198,6 @@ const Booking = () => {
                 );
               })}
             </div>
-          </div>
-          <div className="glass-panel rounded-xl p-6">
-            <h4 className="font-label-sm text-label-sm uppercase text-on-surface-variant mb-4">Location</h4>
-            <div className="h-48 rounded-lg overflow-hidden relative mb-4">
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpU5YVFZt1PvKC7RmlnN6bdzGfgF5BvkQNL-Ge0mv1Eh5fcSuOXNp13gmfN0X7bjZqKIUjyZG1dB47g7m7a-VVwoHx-b73iafQZAKXozLMRy0un8IWruh2xLBQXb82qvFyH3k0xWe9OIZNonBABlSoIMTA9wcBdsEVdBuwSLWFqwylos7j2Vx0Tm9tJVzUOQLr5k5guH9OrtdmbZbmFzFvWtWDaYVHNIQXw0QqdrbXZ6pnC5vLlxYl')" }}
-              ></div>
-            </div>
-            <p className="font-body-md text-on-surface">
-              Mactan Island<br/>Cebu, Philippines
-            </p>
           </div>
         </div>
       </div>
