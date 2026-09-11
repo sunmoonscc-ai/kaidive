@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { isAdmin } from '../config/roles';
 import GalleryModal from '../components/Gallery/GalleryModal';
+import GalleryAdminMgmt from '../components/admin/GalleryAdminMgmt';
 
 const Admin = ({ user }) => {
   const [activeTab, setActiveTab] = useState('users');
@@ -76,11 +77,7 @@ const Admin = ({ user }) => {
               </button>
             </div>
             
-            <div className="bg-white p-6 rounded-xl border">
-              <p className="text-on-surface-variant">
-                갤러리 항목은 <a href="/gallery" className="text-primary hover:underline">갤러리 페이지</a>에서 직접 삭제할 수 있습니다.
-              </p>
-            </div>
+            <GalleryAdminMgmt />
 
             <GalleryModal 
               isOpen={isGalleryModalOpen} 

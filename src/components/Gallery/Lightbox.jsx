@@ -17,7 +17,7 @@ const Lightbox = ({ item, onClose }) => {
     if (url && url.includes('drive.google.com')) {
       const idMatch = url.match(/id=([^&]+)/);
       if (idMatch && idMatch[1]) {
-        return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w1000`;
+        return `https://lh3.googleusercontent.com/d/${idMatch[1]}=w1000`;
       }
     }
     return url;
