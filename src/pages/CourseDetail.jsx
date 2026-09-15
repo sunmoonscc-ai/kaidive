@@ -96,7 +96,7 @@ const CourseDetail = () => {
         <>
           {/* Intro Section (Only for standard type) */}
           <section className="px-gutter mb-16">
-        <div className="max-w-4xl mx-auto text-center space-y-2">
+        <div className="max-w-4xl mx-auto text-center">
           {course.intro.map((line, idx) => (
             <p 
               key={idx} 

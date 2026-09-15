@@ -27,7 +27,7 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="relative rounded-2xl overflow-hidden group shadow-[0_10px_30px_rgba(0,174,239,0.08)] bg-surface-container-lowest">
             <div className="h-64 relative overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH7myESXSAu42u8rF0SULBoHh4w7YFvWqMi8klSyAdWbSkAK8vte-RBEhh4UWcD8g_5efNFVK8hvpuTaEtl2jGZjt9pLrZnbvHyCaGc8mirCv_r2EB4B_vXYuSg5VDBTObHBI0VYAzWg5UZ_Am4XJGGnLXIfVVsNaJ4qJqbPgXdKi8-v2qAYWF-o5AQwV-jWbgKaWQkadQmCvKRzek6m-BTfpWdYfHLH2RgdxIfMAV2Qjyxhl_XVBu" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" alt="Fun Diving" />
+              <img src="/main.jpg" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" alt="Fun Diving" />
             </div>
             <div className="p-8 relative">
               <div className="absolute -top-10 right-8 bg-surface-mist backdrop-blur-md p-4 rounded-full shadow-lg border border-white/50">
@@ -47,7 +47,7 @@ const Home = () => {
           
           <div className="relative rounded-2xl overflow-hidden group shadow-[0_10px_30px_rgba(0,174,239,0.08)] bg-surface-container-lowest">
             <div className="h-64 relative overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYSASlRfZERi4L8NZr_SqfCngR6GLjAZOEneQZ85SDicP42EciEeKYGVfCsTTkQYk16urMc73l0A3fLRRtz7Tn_trA1BwboqIJPEK1EITyMaSkAg5-IjkF07esuA6_mjctwEjkbEhFKd6NTH8QiGyWbdOGXCytcx_xijAqlENKUeesCx0Z7xyF4kLpBikGpK4LgpjZblSeUAwzHCUGRR0DMWFfz_a_qF9eEgLqjsYjIRekKh7PbxsV" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" alt="Open Water Course" />
+              <img src="/sub.jpg" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700" alt="Open Water Course" />
             </div>
             <div className="p-8 relative">
               <div className="absolute -top-10 right-8 bg-surface-mist backdrop-blur-md p-4 rounded-full shadow-lg border border-white/50">

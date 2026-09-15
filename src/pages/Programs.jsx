@@ -16,7 +16,7 @@ const Programs = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <article className="bg-surface-mist backdrop-blur-md rounded-[1rem] overflow-hidden shadow-[0_10px_30px_rgba(0,174,239,0.08)] border border-white/5 flex flex-col group">
             <div className="relative h-64 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1wX6Dwb_OvfxDk3eZvSYXB5IJwUWTTf_jPy4zhi4uOhIsgNfCxCN4-YBmCDVsg5nBzFzo1GRTOIIdVyE5wvKkJy1wBlWT9qVKPKbyKsBINmHnX3f-edD5m0DrQA7MwVa1QopkCh9vgt66B6frY2yOpmV8zaI7poJgWtYaP7-wVoMbVKutnpi05uqcjI0lz5VXFCY8fl_NvIcj1bFm3oAMiWX94zCR2nTro1UORnGsWxhKHhKWZUSx" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Open Water" />
+              <img src="/scuba-openwater.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Open Water" />
               <div className="absolute top-4 right-4 bg-surface-mist backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                 <span className="font-label-sm text-deep-ocean">Beginner</span>
               </div>
@@ -40,7 +40,7 @@ const Programs = () => {
 
           <article className="bg-surface-mist backdrop-blur-md rounded-[1rem] overflow-hidden shadow-[0_10px_30px_rgba(0,174,239,0.08)] border border-white/5 flex flex-col group">
             <div className="relative h-64 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUX2gQ6zDQ7RnDmg00a-mTicymVtgltp_RXoN6x9WX_xQpVrSGm9bV_jPE4wa48ROYhXwwrnqwbfqJL8cEVAYMM03oLty9euO5yz1DqjkhzQXgs_b0CH8CtWLP18nkHUBwRLW16NUa5seURZ810Fu3MomQY9AqGMjn4cXWDgQiVLv4yjcKhiN8SvrPBUlIppv4sxDvjhEJjhRGxwRNDpHyVwOUD25FDJ9dqjGhDUAHmVpOQANWQI_Y" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Advanced Open Water" />
+              <img src="/scuba-advanced.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Advanced Open Water" />
               <div className="absolute top-4 right-4 bg-surface-mist backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                 <span className="font-label-sm text-deep-ocean">Intermediate</span>
               </div>
@@ -55,7 +55,7 @@ const Programs = () => {
               <div className="flex items-center justify-between mt-auto">
                 <div className="flex flex-col">
                   <span className="font-label-sm text-outline">From</span>
-                  <span className="font-headline-md text-[24px] text-primary">$380</span>
+                  <span className="font-headline-md text-[24px] text-primary">$280</span>
                 </div>
                 <button className="bg-[#00AEEF] hover:bg-primary text-white font-label-sm px-6 py-3 rounded-DEFAULT transition-colors shadow-sm">Learn More</button>
               </div>
@@ -64,7 +64,7 @@ const Programs = () => {
 
           <article className="bg-surface-mist backdrop-blur-md rounded-[1rem] overflow-hidden shadow-[0_10px_30px_rgba(0,174,239,0.08)] border border-white/5 flex flex-col group">
             <div className="relative h-64 overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSH7QNYApvYoDWvOnPkjMaoomCKRXGodF6tbyyh3Vb798fbvr7U-Sqih_m_DeptdgOrznr5Or_y8JUUv3X_6qX0faSbdUheR7kHvTxwWsfvD0pgYlMj4EWJhI3Zq-32haeH-Uh8gJ-h_vu0-LFdnBfbbfsG_HEyQq_Ac15FNm1TNu9zA2uINdkoTzoMbVfkmYIE5s06-PjtPR7-u0H5--yHilKg3QxAvM73eN2rMN-ZnS329Wn_1ta" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Rescue Diver" />
+              <img src="/scuba-rescue.jpg" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Rescue Diver" />
               <div className="absolute top-4 right-4 bg-surface-mist backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                 <span className="font-label-sm text-deep-ocean">Advanced</span>
               </div>

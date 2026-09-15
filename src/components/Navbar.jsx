@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { db, auth, googleProvider } from '../firebase';
 import { signInWithPopup, signOut } from 'firebase/auth';
@@ -9,9 +9,17 @@ const Navbar = ({ user, setUser }) => {
   const { t, i18n } = useTranslation();
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  const isMenuActive = (menu) => {
+    if (menu.key === 'kaidive') return location.pathname.startsWith('/kaidive');
+    if (menu.key === 'programs') return location.pathname.startsWith('/programs');
+    return location.pathname === menu.path;
+  };
+
   const [menus, setMenus] = useState([
     { 
-      key: 'kaidive', path: '/', en: 'Scuba Diving', ko: '스쿠버 다이빙', ja: 'スキューバダイビング', 'zh-CN': '水肺潜水', 'zh-TW': '水肺潛水',
+      key: 'kaidive', path: '/kaidive/discover', en: 'Scuba Diving', ko: '스쿠버 다이빙', ja: 'スキューバダイビング', 'zh-CN': '水肺潜水', 'zh-TW': '水肺潛水',
       submenus: [
         { key: 'discover', path: '/kaidive/discover', ko: '체험다이빙', en: 'Discover Scuba Diving' },
         { key: 'openwater', path: '/kaidive/openwater', ko: '오픈워터', en: 'Open Water' },
@@ -23,7 +31,7 @@ const Navbar = ({ user, setUser }) => {
       ]
     },
     { 
-      key: 'programs', path: '/programs', en: 'Pro Diving', ko: '프로 다이빙', ja: 'プロダイビング', 'zh-CN': '专业潜水', 'zh-TW': '專業潛水',
+      key: 'programs', path: '/programs/instructor', en: 'Pro Diving', ko: '프로 다이빙', ja: 'プロダイビング', 'zh-CN': '专业潜水', 'zh-TW': '專業潛水',
       submenus: [
         { key: 'instructor', path: '/programs/instructor', ko: '강사' },
         { key: 'assistant', path: '/programs/assistant', ko: '보조강사' },
@@ -142,8 +150,8 @@ const Navbar = ({ user, setUser }) => {
             <div key={menu.key} className="relative group h-full flex items-center">
               <NavLink 
                 to={menu.path} 
-                className={({ isActive }) => `font-body-md text-body-md hover:opacity-80 transition-opacity flex items-center gap-1 ${
-                  isActive ? 'text-primary font-semibold border-b-2 border-primary' : 'text-on-surface-variant font-medium'
+                className={() => `font-body-md text-body-md hover:opacity-80 transition-opacity flex items-center gap-1 ${
+                  isMenuActive(menu) ? 'text-primary font-semibold border-b-2 border-primary' : 'text-on-surface-variant font-medium'
                 }`}
               >
                 {menu[i18n.resolvedLanguage?.split('-')[0]] || menu.en || t(`navbar.${menu.key}`)}
