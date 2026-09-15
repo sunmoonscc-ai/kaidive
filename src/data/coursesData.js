@@ -297,7 +297,7 @@ export const coursesData = {
         image: '/scuba-specialty-4.jpg'
       },
       {
-        title: '완벽 중성부력( PERFECT BUOYANCY)',
+        title: '완벽 중성부력(PERFECT BUOYANCY)',
         subtitle: '교육 : $200 - 1일과정',
         description: '수면과 수중에서의 완벽한 부력조절 도전!/호버링/핀 피복',
         requirements: '자격요건 : 오픈워터 자격증 소지자 이상',
