@@ -140,8 +140,8 @@ const Navbar = ({ user, setUser }) => {
               alt="KAI DIVE Logo" 
               className="h-16 md:h-20 w-auto object-contain py-2"
             />
-            <span className="font-display font-bold text-xl md:text-2xl text-white tracking-wide">
-              KAI DIVE
+            <span className="font-display font-bold text-xl md:text-2xl text-orange-600 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+              KAI DIVE CENTER
             </span>
           </NavLink>
         </div>

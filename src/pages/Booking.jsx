@@ -21,7 +21,7 @@ const contacts = [
   { name: 'Instagram', id: 'Kaisam2018', icon: 'photo_camera', color: 'text-[#E1306C]', link: 'https://www.instagram.com/Kaisam2018' },
   { name: 'LINE', id: 'kaidive', icon: 'chat', color: 'text-[#00B900]', link: 'https://line.me/ti/p/17_V1Kct0L' },
   { name: 'KakaoTalk', id: 'mawlove3884', icon: 'forum', color: 'text-[#FEE500]' },
-  { name: 'WeChat', id: 'mawlove2828', icon: 'sms', color: 'text-[#07C160]' }
+  { name: 'WhatsApp', id: 'chang sic woo(Sam)', icon: 'chat', color: 'text-[#25D366]', link: 'https://api.whatsapp.com/message/6CTKQD3R4N75G1?autoload=1&app_absent=0' }
 ];
 
 const Booking = () => {

@@ -110,7 +110,7 @@ const KaiDive = () => {
               { name: 'Instagram', id: 'Kaisam2018', icon: 'photo_camera', img: '/qr-instagram.jpg', color: 'bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white', link: 'https://www.instagram.com/Kaisam2018' },
               { name: 'LINE', id: 'kaidive', icon: 'chat', img: '/qr-line.jpg', color: 'bg-[#00B900] text-white', link: 'https://line.me/ti/p/17_V1Kct0L' },
               { name: 'KakaoTalk', id: 'mawlove3884', icon: 'forum', img: '/qr-kakao.jpg', color: 'bg-[#FEE500] text-[#371d1e]' },
-              { name: 'WeChat', id: 'mawlove2828', icon: 'sms', img: '/qr-wechat.jpg', color: 'bg-[#07C160] text-white' },
+              { name: 'WhatsApp', id: 'chang sic woo(Sam)', icon: 'chat', img: '/qr-whatsapp.jpg', color: 'bg-[#25D366] text-white', link: 'https://api.whatsapp.com/message/6CTKQD3R4N75G1?autoload=1&app_absent=0' },
               { name: 'Location', id: 'Kai dive shop', icon: 'location_on', img: '/qr-map.jpg', color: 'bg-[#EA4335] text-white', link: 'https://www.google.com/maps/search/?api=1&query=카이+다이브+막탄' }
             ].map((contact) => {
               const hasLink = !!contact.link;
@@ -166,7 +166,7 @@ const KaiDive = () => {
                   <p className="text-on-surface-variant text-xs md:text-sm font-medium mb-4 break-all">{contact.id}</p>
                   
                   <div className="w-full aspect-square bg-surface-container-low rounded-xl border border-white/20 overflow-hidden relative shadow-inner">
-                    {hasLink ? (
+                    {contact.img ? (
                       <>
                         <img 
                           src={contact.img} 
