@@ -306,7 +306,7 @@ export const coursesData = {
       {
         title: '해양생물(UNDERWATER ECOLOGY)',
         subtitle: '교육 : $200 - 1일과정',
-        description: '사진 및 비디오촬영방법 /촬영방법 노하우교육 /촬영시 주의점',
+        description: '각종 해양생물공부/촬영방법/누디부터~상어까지',
         requirements: '자격요건 : 오픈워터 자격증 소지자 이상',
         image: '/scuba-specialty-6.jpg'
       }
@@ -324,7 +324,7 @@ export const coursesData = {
       },
       {
         title: '보트(펀) 다이빙(아일랜드)',
-        subtitle: '상담',
+        subtitle: '인원 및 레벨/아일랜드 위치/다이빙 횟수/기간 등 상담 요망',
         description: '[포함사항]\n장비렌탈 풀셋 / 점심식사',
         image: '/scuba-fun-2.jpg'
       },
@@ -498,7 +498,7 @@ export const coursesData = {
       {
         day: '사이언스오브다이빙',
         items: [
-          'SSI 토탈 티칭 시스템',
+          '토탈 티칭 시스템',
           '다이빙 물리학',
           '다이빙 생리학',
           '감압이론',

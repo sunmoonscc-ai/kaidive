@@ -12,13 +12,15 @@ const KaiDive = () => {
             <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-sm tracking-widest shadow-sm">
               Welcome to KAI DIVE
             </div>
-            <h1 className="font-display text-[clamp(1.25rem,6vw,2.25rem)] md:text-5xl lg:text-[3.2rem] text-deep-ocean font-bold leading-tight md:leading-tight lg:leading-snug tracking-tight whitespace-nowrap md:whitespace-normal">
-              필리핀 세부 막탄에 위치한 <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">PSS 정식 인증 다이빙 센터</span>
+            <h1 className="font-display text-[clamp(1.25rem,4.5vw,2rem)] md:text-4xl lg:text-[2.6rem] text-deep-ocean font-bold leading-tight md:leading-tight lg:leading-snug tracking-tight">
+              세계적인 글로벌 다이빙 표준, RSTC에 등록된<br className="hidden lg:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"> PSS 정식 인증 센터 '카이다이브'</span>
             </h1>
-            <p className="text-on-surface-variant text-lg md:text-xl leading-relaxed max-w-2xl mt-6">
-              카이다이브는 다이빙 전문 교육기관인 PSS 협회 정식 인증된 다이빙 교육센터로, 다양한 교육 다이빙, 펀다이빙, 체험다이빙을 전문적으로 진행하고 있습니다.
-            </p>
+            <div className="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-2xl mt-6 space-y-4">
+              <p>필리핀 세부 막탄에 위치한 카이다이브는 세계적인 다이빙 교육 표준을 리드하는 RSTC(Recreational Scuba Training Council) 소속 글로벌 다이빙 단체인 PSS(Professional Scuba Schools) 의 정식 인증 교육기관입니다.</p>
+              <p>카이다이브는 체계적이고 안전한 스쿠버다이빙 교육과 프리다이빙 전문 교육, 아름다운 세부 바다를 즐기는 펀다이빙 및 체험다이빙을 전문적으로 진행하고 있습니다.</p>
+              <p>뿐만 아니라 세부 오슬롭 고래상어 투어, 아일랜드 호핑투어, 파라세일링을 비롯한 다양한 해양 액티비티까지 원스톱으로 함께 즐기실 수 있습니다.</p>
+            </div>
           </div>
           
           {/* Main Image */}
