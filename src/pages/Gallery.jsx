@@ -57,7 +57,7 @@ const Gallery = ({ user }) => {
 
   const getImageUrl = (url) => {
     if (url && url.includes('drive.google.com')) {
-      const idMatch = url.match(/id=([^&]+)/);
+      const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
       if (idMatch && idMatch[1]) {
         return `https://lh3.googleusercontent.com/d/${idMatch[1]}=w1000`;
       }
