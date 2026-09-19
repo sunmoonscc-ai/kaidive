@@ -14,6 +14,8 @@ const Navbar = ({ user, setUser }) => {
   const isMenuActive = (menu) => {
     if (menu.key === 'kaidive') return location.pathname.startsWith('/kaidive');
     if (menu.key === 'programs') return location.pathname.startsWith('/programs');
+    if (menu.key === 'oslob') return location.pathname.startsWith('/oslob');
+    if (menu.key === 'hopping') return location.pathname.startsWith('/hopping');
     return location.pathname === menu.path;
   };
 
@@ -38,9 +40,23 @@ const Navbar = ({ user, setUser }) => {
         { key: 'specialty-instructor', path: '/programs/specialty-instructor', ko: '스페셜티강사' }
       ]
     },
-    { key: 'hopping', path: '/hopping', en: 'Hopping & Activity', ko: '호핑&액티비티', ja: 'ホッピング＆アクティビティ', 'zh-CN': '跳岛&活动', 'zh-TW': '跳島&活動' },
+    { 
+      key: 'hopping', path: '/hopping/tour', en: 'Hopping & Activity', ko: '호핑&액티비티', ja: 'ホッピング＆アクティビティ', 'zh-CN': '跳岛&活动', 'zh-TW': '跳島&活動',
+      submenus: [
+        { key: 'tour', path: '/hopping/tour', ko: '호핑투어', en: 'Hopping Tour' },
+        { key: 'marine', path: '/hopping/marine', ko: '해양레포츠', en: 'Marine Sports' },
+        { key: 'amazing', path: '/hopping/amazing', ko: '세부 어메이징쇼', en: 'Cebu Amazing Show' }
+      ]
+    },
     { key: 'freediving', path: '/freediving', en: 'Freediving', ko: '프리다이빙', ja: 'フリーダイビング', 'zh-CN': '自由潜水', 'zh-TW': '自由潛水' },
-    { key: 'oslob', path: '/oslob', en: 'Oslob Tour', ko: '오슬롭투어', ja: 'オスロブツアー', 'zh-CN': '奥斯洛布之旅', 'zh-TW': '奧斯洛布之旅' },
+    { 
+      key: 'oslob', path: '/oslob/moalboal', en: 'Oslob Tour', ko: '오슬롭투어', ja: 'オスロブツアー', 'zh-CN': '奥斯洛布之旅', 'zh-TW': '奧斯洛布之旅',
+      submenus: [
+        { key: 'moalboal', path: '/oslob/moalboal', ko: '오슬롭&모알보알', en: 'Oslob & Moalboal' },
+        { key: 'sumilon', path: '/oslob/sumilon', ko: '오슬롭&수밀론', en: 'Oslob & Sumilon' },
+        { key: 'canyoneering', path: '/oslob/canyoneering', ko: '오슬롭&캐녀닝', en: 'Oslob & Canyoneering' }
+      ]
+    },
     { key: 'booking', path: '/booking', en: 'Consultation', ko: '상담', ja: '予約', 'zh-CN': '预订', 'zh-TW': '預訂' },
     { key: 'gallery', path: '/gallery', en: 'Gallery', ko: '갤러리', ja: 'ギャラリー', 'zh-CN': '图库', 'zh-TW': '圖庫' }
   ]);

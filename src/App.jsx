@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -10,6 +10,8 @@ import Booking from './pages/Booking';
 import Admin from './pages/Admin';
 import CourseDetail from './pages/CourseDetail';
 import MyPage from './pages/MyPage';
+import OslobTour from './pages/OslobTour';
+import HoppingActivity from './pages/HoppingActivity';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,6 +30,10 @@ function App() {
             <Route path="/kaidive/:courseId" element={<CourseDetail />} />
             <Route path="/programs" element={<Programs />} />
             <Route path="/programs/:courseId" element={<CourseDetail />} />
+            <Route path="/oslob" element={<Navigate to="/oslob/moalboal" replace />} />
+            <Route path="/oslob/:tourId" element={<OslobTour />} />
+            <Route path="/hopping" element={<Navigate to="/hopping/tour" replace />} />
+            <Route path="/hopping/:activityId" element={<HoppingActivity />} />
             <Route path="/gallery" element={<Gallery user={user} />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/admin" element={<Admin user={user} />} />
