@@ -38,6 +38,9 @@ const Navbar = ({ user, setUser }) => {
         { key: 'specialty-instructor', path: '/programs/specialty-instructor', ko: '스페셜티강사' }
       ]
     },
+    { key: 'hopping', path: '/hopping', en: 'Hopping & Activity', ko: '호핑&액티비티', ja: 'ホッピング＆アクティビティ', 'zh-CN': '跳岛&活动', 'zh-TW': '跳島&活動' },
+    { key: 'freediving', path: '/freediving', en: 'Freediving', ko: '프리다이빙', ja: 'フリーダイビング', 'zh-CN': '自由潜水', 'zh-TW': '自由潛水' },
+    { key: 'oslob', path: '/oslob', en: 'Oslob Tour', ko: '오슬롭투어', ja: 'オスロブツアー', 'zh-CN': '奥斯洛布之旅', 'zh-TW': '奧斯洛布之旅' },
     { key: 'booking', path: '/booking', en: 'Consultation', ko: '상담', ja: '予約', 'zh-CN': '预订', 'zh-TW': '預訂' },
     { key: 'gallery', path: '/gallery', en: 'Gallery', ko: '갤러리', ja: 'ギャラリー', 'zh-CN': '图库', 'zh-TW': '圖庫' }
   ]);
@@ -145,7 +148,7 @@ const Navbar = ({ user, setUser }) => {
             </span>
           </NavLink>
         </div>
-        <nav className="hidden md:flex gap-8 items-center">
+        <nav className="hidden md:flex gap-3 lg:gap-6 items-center">
           {menus.map((menu) => (
             <div key={menu.key} className="relative group h-full flex items-center">
               <NavLink 
@@ -264,11 +267,11 @@ const Navbar = ({ user, setUser }) => {
       </header>
 
       {/* Bottom Nav Bar (Mobile Only) */}
-      <nav className="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-mist backdrop-blur-md shadow-[0_-10px_30px_rgba(0,174,239,0.08)] flex justify-around items-center h-20 px-4 pb-safe border-t-0">
-        {menus.slice(0, 4).map((menu) => {
+      <nav className="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-mist backdrop-blur-md shadow-[0_-10px_30px_rgba(0,174,239,0.08)] grid grid-cols-4 gap-y-1 h-auto min-h-[5rem] px-2 py-2 pb-safe border-t-0">
+        {menus.map((menu) => {
           const hasSubmenu = menu.submenus && menu.submenus.length > 0;
           return (
-            <div key={menu.key} className="flex-1 flex justify-center">
+            <div key={menu.key} className="flex justify-center">
               <NavLink 
                 to={hasSubmenu ? "#" : menu.path} 
                 onClick={(e) => {
@@ -277,12 +280,19 @@ const Navbar = ({ user, setUser }) => {
                     setActiveMobileMenu(activeMobileMenu === menu.key ? null : menu.key);
                   }
                 }}
-                className={({ isActive }) => `flex flex-col items-center justify-center transition-colors active:scale-90 transition-transform p-2 rounded-xl w-full ${(!hasSubmenu && isActive) || activeMobileMenu === menu.key ? 'bg-primary-container text-on-primary-container rounded-full px-4 py-1' : 'text-on-surface-variant hover:bg-surface-container-low'}`}
+                className={({ isActive }) => `flex flex-col items-center justify-center transition-colors active:scale-90 transition-transform p-1.5 rounded-xl w-full ${(!hasSubmenu && isActive) || activeMobileMenu === menu.key ? 'bg-primary-container text-on-primary-container rounded-2xl' : 'text-on-surface-variant hover:bg-surface-container-low'}`}
               >
                 {({ isActive }) => (
                   <>
-                    <span className="material-symbols-outlined mb-1" style={{ fontVariationSettings: (!hasSubmenu && isActive) || activeMobileMenu === menu.key ? "'FILL' 1" : "'FILL' 0" }}>{menu.key === 'kaidive' ? 'home' : menu.key === 'programs' ? 'scuba_diving' : menu.key === 'booking' ? 'calendar_add_on' : 'photo_library'}</span>
-                    <span className="font-label-sm text-label-sm leading-tight text-[10px]">
+                    <span className="material-symbols-outlined mb-0.5" style={{ fontVariationSettings: (!hasSubmenu && isActive) || activeMobileMenu === menu.key ? "'FILL' 1" : "'FILL' 0" }}>
+                      {menu.key === 'kaidive' ? 'home' : 
+                       menu.key === 'programs' ? 'scuba_diving' : 
+                       menu.key === 'hopping' ? 'sailing' :
+                       menu.key === 'freediving' ? 'pool' :
+                       menu.key === 'oslob' ? 'directions_boat' :
+                       menu.key === 'booking' ? 'calendar_add_on' : 'photo_library'}
+                    </span>
+                    <span className="font-label-sm text-label-sm leading-tight text-[10px] whitespace-nowrap overflow-hidden text-ellipsis w-full text-center">
                       {menu[i18n.resolvedLanguage?.split('-')[0]] || menu.en || t(`navbar.${menu.key}`)}
                     </span>
                   </>
