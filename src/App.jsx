@@ -30,6 +30,8 @@ function App() {
             <Route path="/kaidive/:courseId" element={<CourseDetail />} />
             <Route path="/programs" element={<Programs />} />
             <Route path="/programs/:courseId" element={<CourseDetail />} />
+            <Route path="/freediving" element={<Navigate to="/freediving/freediver" replace />} />
+            <Route path="/freediving/:courseId" element={<CourseDetail />} />
             <Route path="/oslob" element={<Navigate to="/oslob/moalboal" replace />} />
             <Route path="/oslob/:tourId" element={<OslobTour />} />
             <Route path="/hopping" element={<Navigate to="/hopping/tour" replace />} />

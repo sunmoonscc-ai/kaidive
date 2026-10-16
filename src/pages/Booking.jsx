@@ -10,6 +10,7 @@ const programs = [
   '스페셜티(SPECIALTY)',
   '펀다이빙(FUN DIVING)',
   '다이빙패키지(DIVING PACKAGE)',
+  '프리다이버(FREE DIVER)',
   '프로다이빙 [강사]',
   '프로다이빙 [보조강사]',
   '프로다이빙 [스페셜티강사]',

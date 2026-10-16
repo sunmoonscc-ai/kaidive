@@ -14,6 +14,7 @@ const Navbar = ({ user, setUser }) => {
   const isMenuActive = (menu) => {
     if (menu.key === 'kaidive') return location.pathname.startsWith('/kaidive');
     if (menu.key === 'programs') return location.pathname.startsWith('/programs');
+    if (menu.key === 'freediving') return location.pathname.startsWith('/freediving');
     if (menu.key === 'oslob') return location.pathname.startsWith('/oslob');
     if (menu.key === 'hopping') return location.pathname.startsWith('/hopping');
     return location.pathname === menu.path;
@@ -48,7 +49,12 @@ const Navbar = ({ user, setUser }) => {
         { key: 'amazing', path: '/hopping/amazing', ko: '세부 어메이징쇼', en: 'Cebu Amazing Show' }
       ]
     },
-    { key: 'freediving', path: '/freediving', en: 'Freediving', ko: '프리다이빙', ja: 'フリーダイビング', 'zh-CN': '自由潜水', 'zh-TW': '自由潛水' },
+    { 
+      key: 'freediving', path: '/freediving/freediver', en: 'Freediving', ko: '프리다이빙', ja: 'フリーダイビング', 'zh-CN': '自由潜水', 'zh-TW': '自由潛水',
+      submenus: [
+        { key: 'freediver', path: '/freediving/freediver', ko: '프리다이버', en: 'Free Diver' }
+      ]
+    },
     { 
       key: 'oslob', path: '/oslob/moalboal', en: 'Oslob Tour', ko: '오슬롭투어', ja: 'オスロブツアー', 'zh-CN': '奥斯洛布之旅', 'zh-TW': '奧斯洛布之旅',
       submenus: [
