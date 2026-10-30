@@ -12,12 +12,29 @@ const Navbar = ({ user, setUser }) => {
   const location = useLocation();
 
   const isMenuActive = (menu) => {
-    if (menu.key === 'kaidive') return location.pathname.startsWith('/kaidive');
-    if (menu.key === 'programs') return location.pathname.startsWith('/programs');
-    if (menu.key === 'freediving') return location.pathname.startsWith('/freediving');
-    if (menu.key === 'oslob') return location.pathname.startsWith('/oslob');
-    if (menu.key === 'hopping') return location.pathname.startsWith('/hopping');
-    return location.pathname === menu.path;
+    const path = location.pathname;
+    if (menu.key === 'kaidive') {
+      return path === '/' || path === '/home' || path.startsWith('/kaidive');
+    }
+    if (menu.key === 'programs') {
+      return path.startsWith('/programs');
+    }
+    if (menu.key === 'freediving') {
+      return path.startsWith('/freediving');
+    }
+    if (menu.key === 'oslob') {
+      return path.startsWith('/oslob');
+    }
+    if (menu.key === 'hopping') {
+      return path.startsWith('/hopping');
+    }
+    if (menu.key === 'gallery') {
+      return path.startsWith('/gallery');
+    }
+    if (menu.key === 'booking') {
+      return path.startsWith('/booking');
+    }
+    return path === menu.path;
   };
 
   const [menus, setMenus] = useState([
@@ -69,6 +86,10 @@ const Navbar = ({ user, setUser }) => {
   const [activeMobileMenu, setActiveMobileMenu] = useState(null);
   const langRef = useRef(null);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  useEffect(() => {
+    setActiveMobileMenu(null);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -176,14 +197,14 @@ const Navbar = ({ user, setUser }) => {
         }`}
         style={{ background: 'linear-gradient(to bottom, rgb(0, 85, 164) 0%, rgba(255, 255, 255, 1) 100%)' }}
       >
-        <div className="flex items-center gap-4">
-          <NavLink to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <div className="flex items-center gap-2 md:gap-4 min-w-0 pr-2">
+          <NavLink to="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity min-w-0">
             <img 
               src="/logo-top.png" 
               alt="KAI DIVE Logo" 
-              className="h-16 md:h-20 w-auto object-contain py-2"
+              className="h-14 md:h-20 w-auto object-contain py-1 md:py-2 flex-shrink-0"
             />
-            <span className="font-display font-bold text-xl md:text-2xl text-orange-600 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+            <span className="font-display font-bold text-base sm:text-xl md:text-2xl text-orange-600 tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] whitespace-nowrap truncate">
               KAI DIVE CENTER
             </span>
           </NavLink>
@@ -227,12 +248,12 @@ const Navbar = ({ user, setUser }) => {
             </NavLink>
           )}
         </nav>
-        <div className="flex items-center gap-4 relative" ref={langRef}>
+        <div className="flex items-center gap-2 md:gap-4 relative flex-shrink-0" ref={langRef}>
           {user ? (
             <div className="relative">
               <button 
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
-                className="w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center shadow-md hover:scale-105 transition-transform"
+                className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center shadow-md hover:scale-105 transition-transform"
               >
                 {user.picture ? (
                   <img src={user.picture} alt="Profile" className="w-full h-full rounded-full object-cover" referrerPolicy="no-referrer" />
@@ -278,7 +299,7 @@ const Navbar = ({ user, setUser }) => {
           ) : (
             <button 
               onClick={handleLogin}
-              className="bg-primary text-on-primary font-semibold text-sm px-4 py-2 rounded-xl shadow-sm hover:opacity-90 transition-opacity"
+              className="bg-primary text-on-primary font-semibold text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2 rounded-xl shadow-sm hover:opacity-90 transition-opacity whitespace-nowrap min-w-max flex items-center justify-center flex-shrink-0"
             >
               {t('navbar.login')}
             </button>
@@ -289,7 +310,7 @@ const Navbar = ({ user, setUser }) => {
               setIsLangOpen(!isLangOpen);
               setIsProfileOpen(false);
             }}
-            className="rounded-xl px-4 py-2 flex gap-2 items-center font-label-sm text-label-sm cursor-pointer shadow-sm transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container"
+            className="rounded-xl px-2.5 md:px-4 py-1.5 md:py-2 flex gap-1.5 md:gap-2 items-center font-label-sm text-label-sm cursor-pointer shadow-sm transition-colors bg-surface-container-low text-on-surface hover:bg-surface-container flex-shrink-0 whitespace-nowrap"
           >
             <span>{getLangLabel(i18n.resolvedLanguage || i18n.language || 'en')}</span>
             <span className="material-symbols-outlined text-sm">language</span>
@@ -310,34 +331,53 @@ const Navbar = ({ user, setUser }) => {
       <nav className="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-mist backdrop-blur-md shadow-[0_-10px_30px_rgba(0,174,239,0.08)] grid grid-cols-4 gap-y-1 h-auto min-h-[5rem] px-2 py-2 pb-safe border-t-0">
         {menus.map((menu) => {
           const hasSubmenu = menu.submenus && menu.submenus.length > 0;
+          // An item is active ONLY if its submenu modal is open OR it matches current route while no submenu modal is open
+          const isItemActive = activeMobileMenu ? activeMobileMenu === menu.key : isMenuActive(menu);
+
+          const content = (
+            <>
+              <span 
+                className="material-symbols-outlined mb-0.5 text-2xl transition-all" 
+                style={{ fontVariationSettings: isItemActive ? "'FILL' 1, 'wght' 600" : "'FILL' 0, 'wght' 400" }}
+              >
+                {menu.key === 'kaidive' ? 'home' : 
+                 menu.key === 'programs' ? 'scuba_diving' : 
+                 menu.key === 'hopping' ? 'sailing' :
+                 menu.key === 'freediving' ? 'pool' :
+                 menu.key === 'oslob' ? 'directions_boat' :
+                 menu.key === 'booking' ? 'calendar_add_on' : 'photo_library'}
+              </span>
+              <span className="font-label-sm text-label-sm leading-tight text-[10px] whitespace-nowrap overflow-hidden text-ellipsis w-full text-center">
+                {getMenuLabel(menu)}
+              </span>
+            </>
+          );
+
+          const itemClass = `flex flex-col items-center justify-center transition-colors active:scale-90 transition-transform p-1.5 rounded-xl w-full select-none ${
+            isItemActive 
+              ? 'bg-primary-container text-on-primary-container font-bold rounded-2xl shadow-sm' 
+              : 'text-on-surface-variant hover:bg-surface-container-low font-medium'
+          }`;
+
           return (
             <div key={menu.key} className="flex justify-center">
-              <NavLink 
-                to={hasSubmenu ? "#" : menu.path} 
-                onClick={(e) => {
-                  if (hasSubmenu) {
-                    e.preventDefault();
-                    setActiveMobileMenu(activeMobileMenu === menu.key ? null : menu.key);
-                  }
-                }}
-                className={({ isActive }) => `flex flex-col items-center justify-center transition-colors active:scale-90 transition-transform p-1.5 rounded-xl w-full ${(!hasSubmenu && isActive) || activeMobileMenu === menu.key ? 'bg-primary-container text-on-primary-container rounded-2xl' : 'text-on-surface-variant hover:bg-surface-container-low'}`}
-              >
-                {({ isActive }) => (
-                  <>
-                    <span className="material-symbols-outlined mb-0.5" style={{ fontVariationSettings: (!hasSubmenu && isActive) || activeMobileMenu === menu.key ? "'FILL' 1" : "'FILL' 0" }}>
-                      {menu.key === 'kaidive' ? 'home' : 
-                       menu.key === 'programs' ? 'scuba_diving' : 
-                       menu.key === 'hopping' ? 'sailing' :
-                       menu.key === 'freediving' ? 'pool' :
-                       menu.key === 'oslob' ? 'directions_boat' :
-                       menu.key === 'booking' ? 'calendar_add_on' : 'photo_library'}
-                    </span>
-                    <span className="font-label-sm text-label-sm leading-tight text-[10px] whitespace-nowrap overflow-hidden text-ellipsis w-full text-center">
-                      {getMenuLabel(menu)}
-                    </span>
-                  </>
-                )}
-              </NavLink>
+              {hasSubmenu ? (
+                <button
+                  type="button"
+                  onClick={() => setActiveMobileMenu(activeMobileMenu === menu.key ? null : menu.key)}
+                  className={itemClass}
+                >
+                  {content}
+                </button>
+              ) : (
+                <NavLink
+                  to={menu.path}
+                  onClick={() => setActiveMobileMenu(null)}
+                  className={itemClass}
+                >
+                  {content}
+                </NavLink>
+              )}
             </div>
           );
         })}
