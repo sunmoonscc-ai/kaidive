@@ -10,16 +10,16 @@ const KaiDive = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
           <div className="flex-1 space-y-6">
             <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold text-sm tracking-widest shadow-sm">
-              Welcome to KAI DIVE
+              {t('kaidive.badge')}
             </div>
             <h1 className="font-display text-[clamp(1.25rem,4.5vw,2rem)] md:text-4xl lg:text-[2.6rem] text-deep-ocean font-bold leading-tight md:leading-tight lg:leading-snug tracking-tight">
-              세계적인 글로벌 다이빙 표준, RSTC에 등록된<br className="hidden lg:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"> PSS 정식 인증 센터 '카이다이브'</span>
+              {t('kaidive.heroTitle1')}<br className="hidden lg:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary"> {t('kaidive.heroTitle2')}</span>
             </h1>
             <div className="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-2xl mt-6 space-y-4">
-              <p>필리핀 세부 막탄에 위치한 카이다이브는 세계적인 다이빙 교육 표준을 리드하는 RSTC(Recreational Scuba Training Council) 소속 글로벌 다이빙 단체인 PSS(Professional Scuba Schools) 의 정식 인증 교육기관입니다.</p>
-              <p>카이다이브는 체계적이고 안전한 스쿠버다이빙 교육과 프리다이빙 전문 교육, 아름다운 세부 바다를 즐기는 펀다이빙 및 체험다이빙을 전문적으로 진행하고 있습니다.</p>
-              <p>뿐만 아니라 세부 오슬롭 고래상어 투어, 아일랜드 호핑투어, 파라세일링을 비롯한 다양한 해양 액티비티까지 원스톱으로 함께 즐기실 수 있습니다.</p>
+              <p>{t('kaidive.heroDesc1')}</p>
+              <p>{t('kaidive.heroDesc2')}</p>
+              <p>{t('kaidive.heroDesc3')}</p>
             </div>
           </div>
           
@@ -42,10 +42,10 @@ const KaiDive = () => {
                 e.target.nextSibling.style.display = 'flex';
               }}
             />
-            {/* Fallback Placeholder (shown if image is not yet saved) */}
+            {/* Fallback Placeholder */}
             <div className="absolute inset-0 bg-surface-container-low flex flex-col items-center justify-center text-on-surface-variant/50 hidden">
               <span className="material-symbols-outlined text-5xl mb-2">image</span>
-              <span className="font-medium text-sm">이미지를 public/main.jpg 로 저장해주세요</span>
+              <span className="font-medium text-sm">public/main.jpg</span>
             </div>
           </div>
         </div>
@@ -60,9 +60,9 @@ const KaiDive = () => {
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
                 <span className="material-symbols-outlined text-2xl">school</span>
               </div>
-              <h3 className="font-headline-sm text-headline-sm font-bold text-deep-ocean mb-3">책임 교육</h3>
+              <h3 className="font-headline-sm text-headline-sm font-bold text-deep-ocean mb-3">{t('kaidive.feature1Title')}</h3>
               <p className="text-on-surface-variant text-body-md leading-relaxed">
-                라이센스 및 레크레이션 다이빙부터 테크니컬 다이빙, 프리 다이빙 등 다이빙 체험에서부터 강사과정까지 카이다이브에서 확실한 다이버가 되도록 책임 교육하겠습니다.
+                {t('kaidive.feature1Desc')}
               </p>
             </div>
 
@@ -71,9 +71,9 @@ const KaiDive = () => {
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
                 <span className="material-symbols-outlined text-2xl">scuba_diving</span>
               </div>
-              <h3 className="font-headline-sm text-headline-sm font-bold text-deep-ocean mb-3">최신 정품 장비</h3>
+              <h3 className="font-headline-sm text-headline-sm font-bold text-deep-ocean mb-3">{t('kaidive.feature2Title')}</h3>
               <p className="text-on-surface-variant text-body-md leading-relaxed">
-                마레스 정품 장비로 교육을 하며, 주기적인 업그레이드를 통해 항상 최상의 상태와 최신의 장비를 유지하고 있습니다.
+                {t('kaidive.feature2Desc')}
               </p>
             </div>
 
@@ -88,10 +88,9 @@ const KaiDive = () => {
                   e.target.nextSibling.style.display = 'flex';
                 }}
               />
-              {/* Fallback Placeholder (shown if image is not yet saved) */}
               <div className="absolute inset-0 bg-surface-container-low flex flex-col items-center justify-center text-on-surface-variant/50 hidden">
                 <span className="material-symbols-outlined text-4xl mb-2">image</span>
-                <span className="font-medium text-sm">public/sub.jpg 로 저장해주세요</span>
+                <span className="font-medium text-sm">public/sub.jpg</span>
               </div>
             </div>
           </div>
@@ -102,8 +101,8 @@ const KaiDive = () => {
       <section className="px-gutter mb-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-ocean mb-4">Connect With Us</h2>
-            <p className="text-on-surface-variant text-body-lg">QR 코드를 스캔하거나 아이디를 검색해서 KAI DIVE와 소통하세요!</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-deep-ocean mb-4">{t('kaidive.connectTitle')}</h2>
+            <p className="text-on-surface-variant text-body-lg">{t('kaidive.connectDesc')}</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
@@ -126,21 +125,20 @@ const KaiDive = () => {
                 onClick: () => {
                   if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(contact.id).then(() => {
-                      alert(`${contact.name} 아이디(${contact.id})가 복사되었습니다.\n해당 앱을 실행하여 계정 검색에 붙여넣기 해주세요.`);
-                    }).catch(err => {
-                      alert('아이디 복사에 실패했습니다. 수동으로 복사해주세요.');
+                      alert(t('kaidive.copyAlertSuccess', { name: contact.name, id: contact.id }));
+                    }).catch(() => {
+                      alert(t('kaidive.copyAlertFail'));
                     });
                   } else {
-                    // Fallback for older browsers or non-secure contexts
                     const textArea = document.createElement("textarea");
                     textArea.value = contact.id;
                     document.body.appendChild(textArea);
                     textArea.select();
                     try {
                       document.execCommand('copy');
-                      alert(`${contact.name} 아이디(${contact.id})가 복사되었습니다.\n해당 앱을 실행하여 계정 검색에 붙여넣기 해주세요.`);
-                    } catch (err) {
-                      alert('아이디 복사에 실패했습니다. 수동으로 복사해주세요.');
+                      alert(t('kaidive.copyAlertSuccess', { name: contact.name, id: contact.id }));
+                    } catch {
+                      alert(t('kaidive.copyAlertFail'));
                     }
                     document.body.removeChild(textArea);
                   }
@@ -187,7 +185,7 @@ const KaiDive = () => {
                     ) : (
                       <div className="absolute inset-0 flex flex-col items-center justify-center text-on-surface-variant/70 bg-surface-variant/20 hover:bg-primary/5 transition-colors">
                         <span className="material-symbols-outlined text-3xl md:text-4xl mb-2 text-primary">content_copy</span>
-                        <span className="text-xs md:text-sm font-semibold text-primary">클릭하여 복사</span>
+                        <span className="text-xs md:text-sm font-semibold text-primary">{t('kaidive.clickToCopy')}</span>
                       </div>
                     )}
                   </div>
@@ -207,14 +205,14 @@ const KaiDive = () => {
           
           <div className="relative z-10">
             <p className="text-surface-mist/80 text-title-lg mb-4 font-medium">
-              저희 카이다이브는 다이빙을 통한 다양하고 즐거운 경험을 드리기 위해 항상 최선을 다하고 있습니다.
+              {t('kaidive.sloganSub')}
             </p>
             <h2 className="text-white text-headline-lg md:text-display-sm font-black mb-6">
-              이제 선택만 하시면 됩니다.
+              {t('kaidive.sloganMain')}
             </h2>
             <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 shadow-lg">
               <p className="text-secondary-container font-black text-2xl tracking-widest">
-                진짜다KAI~ 재밌다KAI~ 오라KAI~
+                {t('kaidive.sloganHighlight')}
               </p>
             </div>
           </div>

@@ -24,43 +24,43 @@ const Navbar = ({ user, setUser }) => {
     { 
       key: 'kaidive', path: '/kaidive/discover', en: 'Scuba Diving', ko: '스쿠버 다이빙', ja: 'スキューバダイビング', 'zh-CN': '水肺潜水', 'zh-TW': '水肺潛水',
       submenus: [
-        { key: 'discover', path: '/kaidive/discover', ko: '체험다이빙', en: 'Discover Scuba Diving' },
-        { key: 'openwater', path: '/kaidive/openwater', ko: '오픈워터', en: 'Open Water' },
-        { key: 'advanced', path: '/kaidive/advanced', ko: '어드밴스', en: 'Advanced' },
-        { key: 'rescue-master', path: '/kaidive/rescue-master', ko: '레스큐&마스터', en: 'Rescue & Master' },
-        { key: 'specialty', path: '/kaidive/specialty', ko: '스페셜티', en: 'Specialty' },
-        { key: 'fun', path: '/kaidive/fun', ko: '펀다이빙', en: 'Fun Diving' },
-        { key: 'package', path: '/kaidive/package', ko: '다이빙패키지', en: 'Diving Package' }
+        { key: 'discover', path: '/kaidive/discover', ko: '체험다이빙', en: 'Discover Scuba', ja: '体験ダイビング', 'zh-CN': '体验潜水', 'zh-TW': '體驗潛水' },
+        { key: 'openwater', path: '/kaidive/openwater', ko: '오픈워터', en: 'Open Water', ja: 'オープンウォーター', 'zh-CN': '开放水域', 'zh-TW': '開放水域' },
+        { key: 'advanced', path: '/kaidive/advanced', ko: '어드밴스', en: 'Advanced', ja: 'アドバンス', 'zh-CN': '进阶潜水', 'zh-TW': '進階潛水' },
+        { key: 'rescue-master', path: '/kaidive/rescue-master', ko: '레스큐&마스터', en: 'Rescue & Master', ja: 'レスキュー＆マスター', 'zh-CN': '救援&潜水长', 'zh-TW': '救援&潛水長' },
+        { key: 'specialty', path: '/kaidive/specialty', ko: '스페셜티', en: 'Specialty', ja: 'スペシャルティ', 'zh-CN': '专长课程', 'zh-TW': '專長課程' },
+        { key: 'fun', path: '/kaidive/fun', ko: '펀다이빙', en: 'Fun Diving', ja: 'ファンダイビング', 'zh-CN': '欢乐潜水', 'zh-TW': '歡樂潛水' },
+        { key: 'package', path: '/kaidive/package', ko: '다이빙패키지', en: 'Diving Package', ja: 'ダイビングパッケージ', 'zh-CN': '潜水套餐', 'zh-TW': '潛水套裝' }
       ]
     },
     { 
       key: 'programs', path: '/programs/instructor', en: 'Pro Diving', ko: '프로 다이빙', ja: 'プロダイビング', 'zh-CN': '专业潜水', 'zh-TW': '專業潛水',
       submenus: [
-        { key: 'instructor', path: '/programs/instructor', ko: '강사' },
-        { key: 'assistant', path: '/programs/assistant', ko: '보조강사' },
-        { key: 'specialty-instructor', path: '/programs/specialty-instructor', ko: '스페셜티강사' }
+        { key: 'instructor', path: '/programs/instructor', ko: '강사', en: 'Instructor', ja: 'インストラクター', 'zh-CN': '教练课程', 'zh-TW': '教練課程' },
+        { key: 'assistant', path: '/programs/assistant', ko: '보조강사', en: 'Assistant Instructor', ja: 'アシスタント', 'zh-CN': '助理教练', 'zh-TW': '助理教練' },
+        { key: 'specialty-instructor', path: '/programs/specialty-instructor', ko: '스페셜티강사', en: 'Specialty Instructor', ja: 'スペシャルティインストラクター', 'zh-CN': '专长教练', 'zh-TW': '專長教練' }
       ]
     },
     { 
       key: 'hopping', path: '/hopping/tour', en: 'Hopping & Activity', ko: '호핑&액티비티', ja: 'ホッピング＆アクティビティ', 'zh-CN': '跳岛&活动', 'zh-TW': '跳島&活動',
       submenus: [
-        { key: 'tour', path: '/hopping/tour', ko: '호핑투어', en: 'Hopping Tour' },
-        { key: 'marine', path: '/hopping/marine', ko: '해양레포츠', en: 'Marine Sports' },
-        { key: 'amazing', path: '/hopping/amazing', ko: '세부 어메이징쇼', en: 'Cebu Amazing Show' }
+        { key: 'tour', path: '/hopping/tour', ko: '호핑투어', en: 'Hopping Tour', ja: 'アイランドホッピング', 'zh-CN': '跳岛一日游', 'zh-TW': '跳島一日遊' },
+        { key: 'marine', path: '/hopping/marine', ko: '해양레포츠', en: 'Marine Sports', ja: 'マリンスポーツ', 'zh-CN': '水上运动', 'zh-TW': '水上活動' },
+        { key: 'amazing', path: '/hopping/amazing', ko: '세부 어메이징쇼', en: 'Cebu Amazing Show', ja: 'セブ・アメージングショー', 'zh-CN': '宿务奇幻秀', 'zh-TW': '宿霧奇幻秀' }
       ]
     },
     { 
       key: 'freediving', path: '/freediving/freediver', en: 'Freediving', ko: '프리다이빙', ja: 'フリーダイビング', 'zh-CN': '自由潜水', 'zh-TW': '自由潛水',
       submenus: [
-        { key: 'freediver', path: '/freediving/freediver', ko: '프리다이버', en: 'Free Diver' }
+        { key: 'freediver', path: '/freediving/freediver', ko: '프리다이버', en: 'Free Diver', ja: 'フリーダイバー', 'zh-CN': '自由潜水员', 'zh-TW': '自由潛水員' }
       ]
     },
     { 
       key: 'oslob', path: '/oslob/moalboal', en: 'Oslob Tour', ko: '오슬롭투어', ja: 'オスロブツアー', 'zh-CN': '奥斯洛布之旅', 'zh-TW': '奧斯洛布之旅',
       submenus: [
-        { key: 'moalboal', path: '/oslob/moalboal', ko: '오슬롭&모알보알', en: 'Oslob & Moalboal' },
-        { key: 'sumilon', path: '/oslob/sumilon', ko: '오슬롭&수밀론', en: 'Oslob & Sumilon' },
-        { key: 'canyoneering', path: '/oslob/canyoneering', ko: '오슬롭&캐녀닝', en: 'Oslob & Canyoneering' }
+        { key: 'moalboal', path: '/oslob/moalboal', ko: '오슬롭&모알보알', en: 'Oslob & Moalboal', ja: 'オスロブ＆モアルボアル', 'zh-CN': '奥斯洛布&墨宝', 'zh-TW': '奧斯洛布&墨寶' },
+        { key: 'sumilon', path: '/oslob/sumilon', ko: '오슬롭&수밀론', en: 'Oslob & Sumilon', ja: 'オスロブ＆スミロン', 'zh-CN': '奥斯洛布&苏米龙', 'zh-TW': '奧斯洛布&蘇米龍' },
+        { key: 'canyoneering', path: '/oslob/canyoneering', ko: '오슬롭&캐녀닝', en: 'Oslob & Canyoneering', ja: 'オスロブ＆キャニ奥ニアリング', 'zh-CN': '奥斯洛布&溯溪', 'zh-TW': '奧斯洛布&溯溪' }
       ]
     },
     { key: 'booking', path: '/booking', en: 'Consultation', ko: '상담', ja: '予約', 'zh-CN': '预订', 'zh-TW': '預訂' },
@@ -121,11 +121,29 @@ const Navbar = ({ user, setUser }) => {
   };
 
   const getLangLabel = (code) => {
+    if (!code) return 'KO';
     if (code.startsWith('ko')) return 'KO';
     if (code.startsWith('ja')) return 'JA';
     if (code === 'zh-CN') return 'CN';
     if (code === 'zh-TW') return 'TW';
+    if (code.startsWith('zh')) return 'CN';
     return 'EN';
+  };
+
+  const getMenuLabel = (item) => {
+    if (!item) return '';
+    const currentLang = i18n.resolvedLanguage || i18n.language || 'ko';
+    
+    // Exact match for zh-CN or zh-TW
+    if (currentLang === 'zh-TW' && item['zh-TW']) return item['zh-TW'];
+    if (currentLang === 'zh-CN' && item['zh-CN']) return item['zh-CN'];
+    
+    // Match 2-letter code: ko, en, ja
+    const langPrefix = currentLang.split('-')[0];
+    if (item[langPrefix]) return item[langPrefix];
+    
+    // Fallback order: en -> ko -> t(navbar.key)
+    return item.en || item.ko || (item.key ? t(`navbar.${item.key}`) : '');
   };
 
   const handleLogin = async () => {
@@ -179,7 +197,7 @@ const Navbar = ({ user, setUser }) => {
                   isMenuActive(menu) ? 'text-primary font-semibold border-b-2 border-primary' : 'text-on-surface-variant font-medium'
                 }`}
               >
-                {menu[i18n.resolvedLanguage?.split('-')[0]] || menu.en || t(`navbar.${menu.key}`)}
+                {getMenuLabel(menu)}
                 {menu.submenus && <span className="material-symbols-outlined text-sm">expand_more</span>}
               </NavLink>
               
@@ -193,7 +211,7 @@ const Navbar = ({ user, setUser }) => {
                         to={sub.path}
                         className={({ isActive }) => `px-4 py-2 text-sm transition-colors text-on-surface-variant hover:text-primary hover:bg-surface-container-low ${isActive ? 'font-semibold text-primary bg-surface-container-low' : ''}`}
                       >
-                        {sub[i18n.resolvedLanguage?.split('-')[0]] || sub.en || sub.ko}
+                        {getMenuLabel(sub)}
                       </NavLink>
                     ))}
                   </div>
@@ -233,7 +251,7 @@ const Navbar = ({ user, setUser }) => {
                     onClick={() => setIsProfileOpen(false)}
                     className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 text-left w-full flex items-center gap-3 transition-colors"
                   >
-                    <span className="material-symbols-outlined text-[18px]">person</span> 마이페이지
+                    <span className="material-symbols-outlined text-[18px]">person</span> {t('navbar.myPage')}
                   </NavLink>
                   {isAdmin(user.email) && (
                     <NavLink 
@@ -241,7 +259,7 @@ const Navbar = ({ user, setUser }) => {
                       onClick={() => setIsProfileOpen(false)}
                       className="md:hidden px-4 py-2.5 text-sm text-error font-medium hover:bg-red-50 text-left w-full flex items-center gap-3 transition-colors"
                     >
-                      <span className="material-symbols-outlined text-[18px]">admin_panel_settings</span> 관리자 메뉴
+                      <span className="material-symbols-outlined text-[18px]">admin_panel_settings</span> {t('navbar.adminMenu')}
                     </NavLink>
                   )}
                   <div className="border-t border-gray-100 my-1"></div>
@@ -252,7 +270,7 @@ const Navbar = ({ user, setUser }) => {
                     }} 
                     className="px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 text-left w-full flex items-center gap-3 transition-colors"
                   >
-                    <span className="material-symbols-outlined text-[18px]">logout</span> 로그아웃
+                    <span className="material-symbols-outlined text-[18px]">logout</span> {t('navbar.logout')}
                   </button>
                 </div>
               )}
@@ -315,7 +333,7 @@ const Navbar = ({ user, setUser }) => {
                        menu.key === 'booking' ? 'calendar_add_on' : 'photo_library'}
                     </span>
                     <span className="font-label-sm text-label-sm leading-tight text-[10px] whitespace-nowrap overflow-hidden text-ellipsis w-full text-center">
-                      {menu[i18n.resolvedLanguage?.split('-')[0]] || menu.en || t(`navbar.${menu.key}`)}
+                      {getMenuLabel(menu)}
                     </span>
                   </>
                 )}
@@ -346,7 +364,7 @@ const Navbar = ({ user, setUser }) => {
                 className={({ isActive }) => `flex items-center p-4 rounded-2xl mb-2 transition-colors ${isActive ? 'bg-primary/10 text-primary font-bold' : 'text-on-surface hover:bg-surface-container-low'}`}
               >
                 <span className="material-symbols-outlined mr-4 opacity-70">arrow_right</span>
-                <span className="text-body-lg">{sub[i18n.resolvedLanguage?.split('-')[0]] || sub.en || sub.ko}</span>
+                <span className="text-body-lg">{getMenuLabel(sub)}</span>
               </NavLink>
             ))}
           </div>

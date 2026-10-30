@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer 
       className="w-full hidden md:block"
@@ -23,15 +26,15 @@ const Footer = () => {
             />
           </Link>
           <div className="font-body-md text-body-md text-white/90 pb-3 md:pb-5">
-            © 2026 KAI DIVE CEBU. All Rights Reserved.
+            {t('footer.copyright')}
           </div>
         </div>
 
         <div className="flex gap-6 pb-3 md:pb-5">
-          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">Privacy Policy</Link>
-          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">Terms of Service</Link>
-          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">FAQ</Link>
-          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">Safety Standards</Link>
+          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">{t('footer.privacyPolicy')}</Link>
+          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">{t('footer.termsOfService')}</Link>
+          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">{t('footer.faq')}</Link>
+          <Link to="#" className="font-body-md text-body-md text-white/80 hover:text-white transition-colors">{t('footer.safetyStandards')}</Link>
         </div>
         
       </div>

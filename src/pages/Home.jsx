@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="pb-32 md:pb-0 pt-0 md:pt-16">
       <section className="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
@@ -11,18 +14,18 @@ const Home = () => {
           ></div>
         </div>
         <div className="relative z-10 text-center px-gutter max-w-container-max mx-auto flex flex-col items-center">
-          <h2 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary drop-shadow-lg mb-6">Dive into the Blue</h2>
-          <p className="font-body-lg text-body-lg text-on-primary max-w-2xl mx-auto mb-10 drop-shadow-md">Experience the ultimate underwater adventure in Cebu's pristine waters. Professional guides, luxury service, and unforgettable memories.</p>
+          <h2 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary drop-shadow-lg mb-6">{t('home.heroTitle')}</h2>
+          <p className="font-body-lg text-body-lg text-on-primary max-w-2xl mx-auto mb-10 drop-shadow-md">{t('home.heroDesc')}</p>
           <Link to="/programs" className="bg-secondary text-on-primary font-body-lg text-body-lg px-8 py-4 rounded-full shadow-[0_10px_30px_rgba(0,174,239,0.2)] hover:bg-[#ff8f60] transition-colors active:scale-95 font-semibold">
-            Explore Packages
+            {t('home.explorePackages')}
           </Link>
         </div>
       </section>
 
       <section className="max-w-container-max mx-auto px-gutter py-section-gap-mobile md:py-section-gap-desktop">
         <div className="text-center mb-16">
-          <h3 className="font-headline-md text-headline-md text-deep-ocean mb-4">Discover Our Courses</h3>
-          <p className="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto">From your first breath underwater to exploring deep reefs, we have the perfect program for you.</p>
+          <h3 className="font-headline-md text-headline-md text-deep-ocean mb-4">{t('home.coursesTitle')}</h3>
+          <p className="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto">{t('home.coursesDesc')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="relative rounded-2xl overflow-hidden group shadow-[0_10px_30px_rgba(0,174,239,0.08)] bg-surface-container-lowest">
@@ -33,14 +36,14 @@ const Home = () => {
               <div className="absolute -top-10 right-8 bg-surface-mist backdrop-blur-md p-4 rounded-full shadow-lg border border-white/50">
                 <span className="material-symbols-outlined text-primary text-3xl">scuba_diving</span>
               </div>
-              <h4 className="font-headline-md text-headline-md text-deep-ocean mb-2 text-2xl">Fun Diving</h4>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-6">For certified divers looking to explore the best dive sites in Cebu. Guided tours with experienced local divemasters.</p>
+              <h4 className="font-headline-md text-headline-md text-deep-ocean mb-2 text-2xl">{t('home.funDivingTitle')}</h4>
+              <p className="font-body-md text-body-md text-on-surface-variant mb-6">{t('home.funDivingDesc')}</p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-3 py-1 bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm rounded-full">Certified Divers</span>
-                <span className="px-3 py-1 bg-surface-container text-on-surface-variant font-label-sm text-label-sm rounded-full">Boat Dives</span>
+                <span className="px-3 py-1 bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm rounded-full">{t('home.certifiedDivers')}</span>
+                <span className="px-3 py-1 bg-surface-container text-on-surface-variant font-label-sm text-label-sm rounded-full">{t('home.boatDives')}</span>
               </div>
               <Link to="/programs" className="inline-flex items-center text-primary font-body-md text-body-md font-semibold hover:text-primary-container transition-colors">
-                View Itineraries <span className="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+                {t('home.viewItineraries')} <span className="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
               </Link>
             </div>
           </div>
@@ -53,14 +56,14 @@ const Home = () => {
               <div className="absolute -top-10 right-8 bg-surface-mist backdrop-blur-md p-4 rounded-full shadow-lg border border-white/50">
                 <span className="material-symbols-outlined text-primary text-3xl">school</span>
               </div>
-              <h4 className="font-headline-md text-headline-md text-deep-ocean mb-2 text-2xl">Open Water Course</h4>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-6">Start your diving journey here. Get certified with our comprehensive PADI Open Water training program.</p>
+              <h4 className="font-headline-md text-headline-md text-deep-ocean mb-2 text-2xl">{t('home.openWaterTitle')}</h4>
+              <p className="font-body-md text-body-md text-on-surface-variant mb-6">{t('home.openWaterDesc')}</p>
               <div className="flex flex-wrap gap-2 mb-6">
-                <span className="px-3 py-1 bg-secondary-container/20 text-secondary font-label-sm text-label-sm rounded-full">Beginners</span>
-                <span className="px-3 py-1 bg-surface-container text-on-surface-variant font-label-sm text-label-sm rounded-full">PADI Certification</span>
+                <span className="px-3 py-1 bg-secondary-container/20 text-secondary font-label-sm text-label-sm rounded-full">{t('home.beginners')}</span>
+                <span className="px-3 py-1 bg-surface-container text-on-surface-variant font-label-sm text-label-sm rounded-full">{t('home.padiCert')}</span>
               </div>
               <Link to="/programs" className="inline-flex items-center text-primary font-body-md text-body-md font-semibold hover:text-primary-container transition-colors">
-                Learn More <span className="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
+                {t('home.learnMore')} <span className="material-symbols-outlined ml-1 text-sm">arrow_forward</span>
               </Link>
             </div>
           </div>
@@ -69,7 +72,7 @@ const Home = () => {
 
       <Link to="/booking" className="fixed bottom-24 md:bottom-8 right-4 md:right-8 bg-secondary text-on-primary rounded-2xl shadow-[0_10px_30px_rgba(0,174,239,0.2)] hover:bg-[#ff8f60] transition-transform active:scale-90 z-40 flex items-center gap-2 px-6 py-4">
         <span className="material-symbols-outlined">calendar_month</span>
-        <span className="font-body-md text-body-md font-semibold">Book Now</span>
+        <span className="font-body-md text-body-md font-semibold">{t('home.bookNow')}</span>
       </Link>
     </div>
   );
