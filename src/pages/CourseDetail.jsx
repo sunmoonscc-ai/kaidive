@@ -1,23 +1,35 @@
 import { useParams, Navigate } from 'react-router-dom';
-import { coursesData } from '../data/coursesData';
+import { coursesDataI18n, coursesData as defaultCoursesData } from '../data/coursesDataI18n';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const CourseDetail = () => {
   const { courseId } = useParams();
-  const course = coursesData[courseId];
+  const { i18n } = useTranslation();
+  const currentLang = i18n.resolvedLanguage || 'ko';
+  const langCourses = coursesDataI18n[currentLang] || coursesDataI18n['ko'] || defaultCoursesData;
+  const course = langCourses[courseId] || defaultCoursesData[courseId];
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [courseId]);
 
   if (!course) {
-    // If the course doesn't exist, we can show a placeholder or redirect
+    const placeholderTexts = {
+      ko: { title: '콘텐츠 준비중입니다', desc: '곧 유익한 내용으로 업데이트될 예정입니다.' },
+      en: { title: 'Content Under Preparation', desc: 'This curriculum will be updated shortly.' },
+      ja: { title: 'コンテンツ準備中です', desc: '近日中に詳細を更新予定です。' },
+      'zh-CN': { title: '内容准备中', desc: '即将更新详细精彩内容，敬请期待。' },
+      'zh-TW': { title: '內容準備中', desc: '即將更新詳細精彩內容，敬請期待。' }
+    };
+    const pText = placeholderTexts[currentLang] || placeholderTexts.ko;
+
     return (
       <div className="pt-32 pb-20 min-h-screen flex items-center justify-center bg-surface-mist">
         <div className="text-center p-8 glass-panel rounded-3xl">
           <span className="material-symbols-outlined text-6xl text-on-surface-variant mb-4">construction</span>
-          <h2 className="text-2xl font-bold text-deep-ocean mb-2">콘텐츠 준비중입니다</h2>
-          <p className="text-on-surface-variant">곧 유익한 내용으로 업데이트될 예정입니다.</p>
+          <h2 className="text-2xl font-bold text-deep-ocean mb-2">{pText.title}</h2>
+          <p className="text-on-surface-variant">{pText.desc}</p>
         </div>
       </div>
     );

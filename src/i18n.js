@@ -124,6 +124,21 @@ export const resources = {
         valueTarget: "값 (대상 언어)",
         save: "저장"
       },
+      gallery: {
+        filterAll: "전체보기",
+        filterPhoto: "사진",
+        filterYoutube: "유튜브",
+        noItems: "아직 등록된 미디어가 없습니다.",
+        confirmDelete: "정말 삭제하시겠습니까?",
+        deleteError: "삭제 중 오류가 발생했습니다.",
+        deleteTitle: "삭제"
+      },
+      mypage: {
+        title: "마이페이지",
+        loginRequired: "로그인이 필요한 페이지입니다.",
+        name: "이름",
+        email: "이메일"
+      },
       programs: {
         heroTitle: "Discover the Deep",
         heroDesc: "물속에서 첫 호흡을 떼는 초보자부터 새로운 모험을 찾는 베테랑 다이버까지, 카이다이브의 프리미엄 프로그램과 함께 잊지 못할 여정을 시작하세요.",
@@ -274,6 +289,21 @@ export const resources = {
         valueTarget: "Value (Target Language)",
         save: "Save"
       },
+      gallery: {
+        filterAll: "All",
+        filterPhoto: "Photos",
+        filterYoutube: "YouTube",
+        noItems: "No media uploaded yet.",
+        confirmDelete: "Are you sure you want to delete this?",
+        deleteError: "An error occurred while deleting.",
+        deleteTitle: "Delete"
+      },
+      mypage: {
+        title: "My Page",
+        loginRequired: "Please log in to view this page.",
+        name: "Name",
+        email: "Email"
+      },
       programs: {
         heroTitle: "Discover the Deep",
         heroDesc: "From absolute beginners seeking their first breath underwater to seasoned divers looking for new adventures, our premium programs offer an unparalleled escape.",
@@ -387,6 +417,21 @@ export const resources = {
         copiedSuccess: "{{name}}のID({{id}})をコピーしました。",
         copiedFail: "IDのコピーに失敗しました。手動でコピーしてください: {{id}}",
         notSure: "よくわからない (相談して決定)"
+      },
+      gallery: {
+        filterAll: "すべて",
+        filterPhoto: "写真",
+        filterYoutube: "YouTube",
+        noItems: "まだ登録されたメディアがありません。",
+        confirmDelete: "本当に削除しますか？",
+        deleteError: "削除中にエラーが発生しました。",
+        deleteTitle: "削除"
+      },
+      mypage: {
+        title: "マイページ",
+        loginRequired: "ログインが必要なページです。",
+        name: "お名前",
+        email: "メールアドレス"
       },
       programs: {
         heroTitle: "Discover the Deep",
@@ -502,6 +547,21 @@ export const resources = {
         copiedFail: "复制失败，请手动复制: {{id}}",
         notSure: "暂不确定 (先咨询推荐)"
       },
+      gallery: {
+        filterAll: "全部",
+        filterPhoto: "照片",
+        filterYoutube: "YouTube",
+        noItems: "暂未上传任何多媒体内容。",
+        confirmDelete: "确定要删除吗？",
+        deleteError: "删除过程中发生错误。",
+        deleteTitle: "删除"
+      },
+      mypage: {
+        title: "个人中心",
+        loginRequired: "此页面需要登录后访问。",
+        name: "姓名",
+        email: "电子邮箱"
+      },
       programs: {
         heroTitle: "Discover the Deep",
         heroDesc: "无论您是初次尝试水下呼吸的初学者，还是寻求全新探险的资深潜水员，KAI DIVE的高端课程都将为您带来独一无二的美好回忆。",
@@ -615,6 +675,21 @@ export const resources = {
         copiedSuccess: "{{name}}帳號 ({{id}}) 已複製到剪貼簿。",
         copiedFail: "複製失敗，請手動複製: {{id}}",
         notSure: "尚未確定 (先諮詢專人推薦)"
+      },
+      gallery: {
+        filterAll: "全部",
+        filterPhoto: "照片",
+        filterYoutube: "YouTube",
+        noItems: "尚無上傳的多媒體內容。",
+        confirmDelete: "確定要刪除嗎？",
+        deleteError: "刪除過程中發生錯誤。",
+        deleteTitle: "刪除"
+      },
+      mypage: {
+        title: "個人中心",
+        loginRequired: "此頁面需要登入後訪問。",
+        name: "姓名",
+        email: "電子郵件"
       },
       programs: {
         heroTitle: "Discover the Deep",

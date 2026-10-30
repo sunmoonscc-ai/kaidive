@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { isAdmin } from '../config/roles';
 import { GALLERY_SCRIPT_URL } from '../config/api';
 import GalleryModal from '../components/Gallery/GalleryModal';
 import Lightbox from '../components/Gallery/Lightbox';
 
 const Gallery = ({ user }) => {
+  const { t } = useTranslation();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // all, photo, youtube
@@ -33,7 +35,7 @@ const Gallery = ({ user }) => {
 
   const handleDelete = async (e, id) => {
     e.stopPropagation();
-    if (!window.confirm('정말 삭제하시겠습니까?')) return;
+    if (!window.confirm(t('gallery.confirmDelete'))) return;
     
     try {
       const response = await fetch(GALLERY_SCRIPT_URL, {
@@ -51,7 +53,7 @@ const Gallery = ({ user }) => {
       }
     } catch (error) {
       console.error("Error deleting item:", error);
-      alert('삭제 중 오류가 발생했습니다.');
+      alert(t('gallery.deleteError'));
     }
   };
 
@@ -78,17 +80,21 @@ const Gallery = ({ user }) => {
 
       {/* Filter Tabs */}
       <div className="flex justify-center gap-4 mb-12 flex-wrap">
-        {['all', 'photo', 'youtube'].map((f) => (
+        {[
+          { key: 'all', label: t('gallery.filterAll') },
+          { key: 'photo', label: t('gallery.filterPhoto') },
+          { key: 'youtube', label: t('gallery.filterYoutube') }
+        ].map((tab) => (
           <button
-            key={f}
-            onClick={() => setFilter(f)}
+            key={tab.key}
+            onClick={() => setFilter(tab.key)}
             className={`px-6 py-2 rounded-full font-label-md transition-all ${
-              filter === f 
+              filter === tab.key 
                 ? 'bg-primary text-white shadow-md' 
                 : 'bg-primary-container text-on-primary-container hover:bg-primary-fixed'
             }`}
           >
-            {f === 'all' ? '전체보기' : f === 'photo' ? '사진' : '유튜브'}
+            {tab.label}
           </button>
         ))}
       </div>
@@ -127,7 +133,7 @@ const Gallery = ({ user }) => {
                 <button 
                   onClick={(e) => handleDelete(e, item.id)}
                   className="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors shadow-lg pointer-events-auto"
-                  title="삭제"
+                  title={t('gallery.deleteTitle')}
                 >
                   <span className="material-symbols-outlined text-sm">delete</span>
                 </button>
@@ -145,7 +151,7 @@ const Gallery = ({ user }) => {
 
       {!loading && items.length === 0 && (
         <div className="text-center py-12 text-on-surface-variant">
-          아직 등록된 미디어가 없습니다.
+          {t('gallery.noItems')}
         </div>
       )}
       
